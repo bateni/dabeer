@@ -1,0 +1,12 @@
+\usemodule[simplefonts]
+\definefontfeature[tlig][default][tlig=yes]  % for en- and em-dashes
+%% ``HM XNiloofar'' is the name of a Farsi font I have already
+%% installed in my system.
+\setmainfont[HM XNiloofar][features={arabic,tlig},range=arabic]
+\setcharacterstripping[1]  % don't show ZWNJ, etc.
+\setupinterlinespace[line=1.5em]
+\setupdirections[bidi=global,method=one]
+\setupalign[r2l]
+\starttext
+\input fa-hafez
+\stoptext
