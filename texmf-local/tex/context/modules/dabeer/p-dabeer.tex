@@ -43,7 +43,7 @@
 \definestartstop[LTR][before={\begingroup\lefttoright},after=\endgroup]
 \definestartstop[RTL][before={\begingroup\righttoleft},after=\endgroup]
 
-\writestatus{dabeer}{Setting main document fonts}
+\writestatus{dabeer}{Setting up main document fonts}
 %% TODO: These should receive font names via options.
 %D Basic font definitions:
 %D Previously, in order to avoid typescripts, we needed to use the
@@ -97,4 +97,12 @@
 
 \setupwhitespace
   [\measure{defaultparskip}]
+
+%D The following will fix \type{\quote} and \type{quotation}
+%D delimiters.  I have not seen the half-guillemots in any real text
+%D but I put it here as reference.  This is easy to change.
+\def\guilsinglleft{‹}
+\def\guilsinglright{›}
+\setupquotation[right=\leftguillemot,left=\rightguillemot]
+\setupquote[left=\guilsinglleft,right=\guilsinglright]
 
