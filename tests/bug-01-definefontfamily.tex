@@ -1,0 +1,13 @@
+\definefontfamily[farsi][serif][HM XNiloofar][features=arabic]
+\setupbodyfont[farsi]
+\setupinterlinespace[line=1.5em]
+\setupdirections[bidi=global,method=one] 
+\setupalign[r2l] 
+\starttext
+
+{\lefttoright What is this typeset in italic style?
+  It works correctly if I use \type{\setmainfont}
+  defined in module \type{simplefonts}.}
+
+\input fa-hafez
+\stoptext
