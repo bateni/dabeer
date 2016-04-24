@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer,
-%D        version=0.05,
+%D        version=0.06,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=dabeer for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -25,12 +25,12 @@
 % along with this program; if not, write to the Free Software
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-\setgvalue{DabeerVersion}{0.05}
+\setgvalue{DabeerVersion}{0.06}
 %% TODO: add automatic conversion from Latin to Persian numbers in Lua.
-\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۵}}
+\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۶}}
 \writestatus{dabeer}{Loading module version \DabeerVersion}
 
-%D It is sometimes easier to use Persian percent sign for commenting.
+%D It is sometimes more convenient to use Persian percent sign for commenting.
 \catcode`٪=14
 
 %% TODO: method should be an option
@@ -114,7 +114,9 @@
 %D In Persian documents, we prefer all the numbers to use Persian
 %D digits unless there is a reason not to (for instance, it is part of
 %D an English text).  \CONTEXT\ provides several number conversions,
-%D we plan to add a few more.  
+%D we plan to add a few more.  However, all of these had better be
+%D placed inside \type{\LTR} macros because the bidi algorithm is not
+%D applied everywhere.
 
 %D We like to have Persian decimals for page numbers.  The proper place
 %D to define these is in a style file (say, for an article or a book)
@@ -125,3 +127,20 @@
 %% TODO: Is it possible to define ``shortcuts'' like n,g,a?
 \setuppagenumber[numberconversion=persiandecimals]
 
+%D {\it Warning}: For a strange reason the following does not work. \\
+%D \type{\define[1]\LTRpersiandecimals#1{\LTR{\persiandecimals{#1}}}}
+\define[1]\LTRpersiandecimals{{\lefttoright\persiandecimals{#1}}}
+\defineconversion[LTRpersiandecimals][\LTRpersiandecimals]
+
+%D Goals we aim to achieve for section heads:
+%D \startitemize[packed]
+%D   \item Use Persian digits;
+%D   \item Place chapter number to the {\it right\/} of the section number;
+%D   \item Typeset each number from left to right; and
+%D   \item Separate chapter and section numbers by dash instead of dot.
+%D \stopitemize
+\setuphead[part,chapter,section]
+          [conversion=LTRpersiandecimals,numberstyle=\righttoleft]
+
+\defineseparatorset[dashsep][-,-,-,-]
+\setuphead[section][sectionseparatorset=dashsep]

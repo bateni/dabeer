@@ -1,0 +1,33 @@
+\usemodule[dabeer]
+
+\starttext
+
+هدف این است که در شماره فصل‌ها و بخش‌ها
+% packed is almost the same as nowhite but places blank before and after the group.
+\startitemize[nowhite]
+\item از ارقام فارسی استفاده شود؛
+\item شماره فصل در سمت راست شماره بخش قرار گیرد؛
+\item هر عدد به صورت چپ به راست حروفچینی گردد (به عدد ۱۰ توجه کنید)؛
+\item و از جداساز خط تیره به جای نقطه بهره برده شود.
+\stopitemize
+
+%% \completecontent will start a new page and add a heading.
+\placecontent
+
+\chapter[title=دستی]
+\section[title=ژاپن]
+\input fa-japan
+\section[title=سکه]
+\input fa-coin
+
+\chapter[title=خودکار]
+\dorecurse{15}{
+  \section[title=آزمایشی]
+}
+\dorecurse{15}{
+  \subsection[title=زیربخش آزمایشی]
+}
+
+
+\stoptext
+
