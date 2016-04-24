@@ -52,7 +52,6 @@
 %D The additional benefit, however, is that we can map the italic style
 %D to oblique, which better suits Persian text.  However, neither italic
 %D nor oblique look good in Persian text.
-%\usemodule[simplefonts]
 \definefontfeature[tlig][default][tlig=yes]  % for en- and em-dashes
 \definefontfeature
    [farsihm]    
@@ -75,6 +74,7 @@
                     bf=file:HM_FMitraBd.ttf,
                     bi=file:HM_FMitraObBd.ttf
                   ]
+%D TeX ligatures are not desirable in mono fonts.
 \definefontfamily [farsifont] [mono] [ALM Fixed]         [features=arabic]
 \definefontfamily [farsifont] [math] [Latin Modern Math] [default]
 \setupbodyfont    [farsifont]
