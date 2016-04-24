@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer,
-%D        version=0.04,
+%D        version=0.05,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=dabeer for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -25,9 +25,9 @@
 % along with this program; if not, write to the Free Software
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-\setgvalue{DabeerVersion}{0.04}
+\setgvalue{DabeerVersion}{0.05}
 %% TODO: add automatic conversion from Latin to Persian numbers in Lua.
-\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۴}}
+\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۵}}
 \writestatus{dabeer}{Loading module version \DabeerVersion}
 
 %D It is sometimes easier to use Persian percent sign for commenting.
@@ -110,4 +110,18 @@
 \def\guilsinglright{›}
 \setupquotation[left=\leftguillemot,right=\rightguillemot]
 \setupquote[left=\guilsinglleft,right=\guilsinglright]
+
+%D In Persian documents, we prefer all the numbers to use Persian
+%D digits unless there is a reason not to (for instance, it is part of
+%D an English text).  \CONTEXT\ provides several number conversions,
+%D we plan to add a few more.  
+
+%D We like to have Persian decimals for page numbers.  The proper place
+%D to define these is in a style file (say, for an article or a book)
+%D where, for instance, different numbering (digits, alphabetic, etc.)
+%D may be used in frontmatter, body, appendices, etc.  Nonetheless, we
+%D provide a default that works for most documents.  Same goes with
+%D other numbering elements.
+%% TODO: Is it possible to define ``shortcuts'' like n,g,a?
+\setuppagenumber[numberconversion=persiandecimals]
 
