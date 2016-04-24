@@ -1,11 +1,12 @@
 %D \module
 %D   [      file=p-dabeer,
-%D        version=0.02
+%D        version=0.03,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=dabeer for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
 %D           date=\currentdate,
-%D      copyright={Mohammad Hossein Bateni}]
+%D      copyright={Mohammad Hossein Bateni},
+%D        license=GNU General Public License v2]
 
 % dabeer module for Persian typesetting in ConTeXt
 % Copyright (C) 2015, 2016  Mohammad Hossein Bateni
@@ -24,25 +25,23 @@
 % along with this program; if not, write to the Free Software
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-\setgvalue{DabeerVersion}{0.02}
+\setgvalue{DabeerVersion}{0.03}
 %% TODO: add automatic conversion from Latin to Persian numbers in Lua.
-\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۲}}
+\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۳}}
 \writestatus{dabeer}{Loading module version \DabeerVersion}
 
 %% TODO: method should be an option
 \setupdirections[bidi=global,method=one]
 \setupalign[r2l]
 
-%% TODO: We also need paragraph-level macros.
-%D Convenience macros for text direction.
-\def\RTL#1{{\righttoleft#1}}
-\def\LTR#1{{\lefttoright#1}}
-
-
-%% TODO: These should receive font names via options.
-%D Basic font definitions
+%D Convenience macros for text direction.  These give \type{\LTR} and
+%D \type{\RTL} in addition to their start/stop block environments.
+\definestartstop[LTR][before={\begingroup\lefttoright},after=\endgroup]
+\definestartstop[RTL][before={\begingroup\righttoleft},after=\endgroup]
 
 \writestatus{dabeer}{Setting main document fonts}
+%% TODO: These should receive font names via options.
+%D Basic font definitions:
 %D Previously, in order to avoid typescripts, we needed to use the
 %D module \type{simplefonts} and macros like \type{\setmainfont}
 %D defined therein.
