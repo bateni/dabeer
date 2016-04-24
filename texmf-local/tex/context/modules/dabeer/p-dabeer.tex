@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer,
-%D        version=0.03,
+%D        version=0.04,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=dabeer for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -25,9 +25,9 @@
 % along with this program; if not, write to the Free Software
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-\setgvalue{DabeerVersion}{0.03}
+\setgvalue{DabeerVersion}{0.04}
 %% TODO: add automatic conversion from Latin to Persian numbers in Lua.
-\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۳}}
+\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۴}}
 \writestatus{dabeer}{Loading module version \DabeerVersion}
 
 %D It is sometimes easier to use Persian percent sign for commenting.
@@ -35,6 +35,9 @@
 
 %% TODO: method should be an option
 %D Set up the default directions.
+
+%D \type{method=default} is not recommended at all.  \type{method=one}
+%D and \type{method=two} are both good.
 \setupdirections[bidi=global,method=one]
 \setupalign[r2l]
 
@@ -101,8 +104,10 @@
 %D The following will fix \type{\quote} and \type{quotation}
 %D delimiters.  I have not seen the half-guillemots in any real text
 %D but I put it here as reference.  This is easy to change.
+%% TODO: The following does not work in English texts.  So perhaps I
+%% should put this under language customizations.
 \def\guilsinglleft{‹}
 \def\guilsinglright{›}
-\setupquotation[right=\leftguillemot,left=\rightguillemot]
+\setupquotation[left=\leftguillemot,right=\rightguillemot]
 \setupquote[left=\guilsinglleft,right=\guilsinglright]
 

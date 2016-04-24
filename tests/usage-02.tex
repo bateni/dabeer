@@ -1,0 +1,36 @@
+\usemodule[dabeer]
+
+\defineblank[ExtractDistance][3pt]
+\definestartstop[BlockQuote]
+                [
+                  before={\blank[ExtractDistance]
+                    \setupnarrower[left=1.5pc,right=1.5pc]
+                    \startnarrower[left,right]
+                    \noindent},
+                  after={\stopnarrower
+                    \blank[ExtractDistance]
+                    \indenting[next]}]
+
+\starttext
+
+\quotation{نهج‌البلاغه}
+کتاب ارزشمندی است که سیدرضی برخی از بلیغ‌ترین سخنان و نوشتارهای
+منسوب به امیر مؤمنان علی‌بن‌ابی‌طالب را گردآوری نموده است.
+امام علی علیه‌السلام در کلمه قصار ۱۹۶
+می‌فرمایند:
+\quotation{آنچه از مالَت رفت و تو را پند آموخت، از دستت نشُد و نسوخت.}
+
+در خطبه ۱۷۷ این کتاب می‌خوانیم:
+
+\startBlockQuote
+خوشا کسی که پرداختن به عیب خویش وی را از عیب دیگران بازدارد. خوشا کسی
+که در خانه نشیند و قوت خود خورد، و به فرمانبرداری پروردگار روی آرد، و
+بر گناهِ خود بگرید تا سرگرمِ کار خویش باشد و مردم را از گزند خود آسوده
+گذارد.
+\stopBlockQuote
+
+{\bf توضیح}: 
+برگردان‌ها از ویکی‌گفتاورد گرفته شده است.
+
+\stoptext
+
