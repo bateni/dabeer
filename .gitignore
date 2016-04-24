@@ -19,6 +19,7 @@
 # *.ps
 # *.eps
 *.pdf
+*.tex.prep
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl

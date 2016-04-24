@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer,
-%D        version=0.01
+%D        version=0.02
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=dabeer for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -24,5 +24,74 @@
 % along with this program; if not, write to the Free Software
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-\setgvalue{DabeerVersion}{0.01}
+\setgvalue{DabeerVersion}{0.02}
+%% TODO: add automatic conversion from Latin to Persian numbers in Lua.
+\setgvalue{DabeerVersionFa}{\LTR{۰٫۰۲}}
 \writestatus{dabeer}{Loading module version \DabeerVersion}
+
+%% TODO: method should be an option
+\setupdirections[bidi=global,method=one]
+\setupalign[r2l]
+
+%% TODO: We also need paragraph-level macros.
+%D Convenience macros for text direction.
+\def\RTL#1{{\righttoleft#1}}
+\def\LTR#1{{\lefttoright#1}}
+
+
+%% TODO: These should receive font names via options.
+%D Basic font definitions
+
+\writestatus{dabeer}{Setting main document fonts}
+%D Previously, in order to avoid typescripts, we needed to use the
+%D module \type{simplefonts} and macros like \type{\setmainfont}
+%D defined therein.
+%D For some reason, the following does not work properly if we simply
+%D provide the font's name: In case of my Farsi fonts, the default
+%D style will then be italic.
+%D The additional benefit, however, is that we can map the italic style
+%D to oblique, which better suits Persian text.  However, neither italic
+%D nor oblique look good in Persian text.
+%\usemodule[simplefonts]
+\definefontfeature[tlig][default][tlig=yes]  % for en- and em-dashes
+\definefontfeature
+   [farsihm]    
+   [mode=node,language=far,script=arab,
+    init=yes,medi=yes,fina=yes,isol=yes,
+    liga=yes,dlig=yes,rlig=yes,clig=yes,
+    mark=yes,mkmk=yes,kern=yes,curs=yes
+   ]
+\definefontfamily [farsifont] [serif] []
+                  [features={farsihm,tlig},
+                    tf=file:HM_XNiloofar.ttf,
+                    it=file:HM_XNiloofarOb.ttf,
+                    bf=file:HM_XNiloofarBd.ttf,
+                    bi=file:HM_XNiloofarObBd.ttf
+                  ]
+\definefontfamily [farsifont] [sans] []
+                  [features={farsihm,tlig},
+                    tf=file:HM_FMitra.ttf,
+                    it=file:HM_FMitraOb.ttf,
+                    bf=file:HM_FMitraBd.ttf,
+                    bi=file:HM_FMitraObBd.ttf
+                  ]
+\definefontfamily [farsifont] [mono] [ALM Fixed]         [features=arabic]
+\definefontfamily [farsifont] [math] [Latin Modern Math] [default]
+\setupbodyfont    [farsifont]
+
+%D We do not like to see special characters such as ZWNJ.
+\setcharacterstripping[1]
+
+%D Persian fonts usually have incorrect heights.  We fix this issue here.
+\setupinterlinespace[line=3.2ex]  % default is 2.8ex
+
+%D While we're at it, we might as well increase the parskip to make it more pleasing.
+%D A more systematic way to handle this might be to use \type{\definewhitespacemethod}.
+%D \type{halfline} and a bunch of other methods are already defined.
+\definemeasure
+  [defaultparskip]
+  [0.3\baselineskip]
+
+\setupwhitespace
+  [\measure{defaultparskip}]
+
