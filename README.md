@@ -9,7 +9,7 @@ These are a collection of macros that I use to typeset RTL Persian texts using C
 
 ## Package structure
 ### tests/
-Several small and medium-size documents for testing CONTEXT's RTL/Persian functionality.
+Several small and medium-size documents for testing CONTEXT's RTL/Persian functionality.  Some are _usage_ examples while I also try to collect here some of the bugs that I want to report.
 
 ### texmf-local/
 Contents of the package should be copied to the TeX tree.
