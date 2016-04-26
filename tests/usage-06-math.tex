@@ -1,5 +1,15 @@
 \usemodule[dabeer]
 \tracemathtrue
+
+\definemathframed[graymath]
+[
+  frame=off,
+  location=mathematics,
+  background=color,
+  backgroundcolor=lightgray,
+  backgroundoffset=2pt
+  ]
+
 \starttext
 
 حروفچینی متون ریاضی همواره از نِقاط قوت \TEX\ بوده است.
@@ -23,6 +33,16 @@
 \startformula
 E = mc^2.
 \stopformula
+
+در \CONTEXT\ استفاده از قاب‌ها بسیار ساده است.
+مثلاً قاب موجود در فرمول زیر به‌سادگی نشان می‌دهد که 
+ $\log(1+x) = x + O(x^2)$.
+
+\startformula
+\log(1+x) = \graymath{x- \displaystyle{x^2\over2}} + {x^3 \over 3} + \cdots
+\stopformula
+
+
 
 %در ادامه به یک محاسبه پیچیده‌تر نگاهی می‌اندازیم.
 
