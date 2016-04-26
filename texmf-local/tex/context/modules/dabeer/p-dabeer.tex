@@ -149,11 +149,15 @@
 %D Footnote definitions.  We have several requirements here.
 %D \startitemize[packed]
 %D \item Footnote text should be processed by bidi algorithm.
-%D \item Footnote text should use surrounding text's direction to
-%D determine its direction at the bottom of the page.
+%D \item When using the default \type{\footnote} command, footnote
+%D text should use surrounding text's direction to determine its 
+%D direction at the bottom of the page.
+%D \item However, we can use \type{LTRfootnote} and \type{RTLfootnote}
+%D to force a direction for footnotes regardless of the surroundings.
 %D \item Footnote rule's location (left or right) is determined by
 %D the direction of the first paragraph of footnote text on the page.
-%D \item Footnote numbers are typeset using Persian decimals.
+%D \item Footnote numbers are typeset using Persian decimals when in
+%D RTL surroundings and using Latin numerals when in LTR setting.
 %D \stopitemize
 \setupfootnotes[rule=paragraph]
 \startsetups[bidi:footnotes]
@@ -170,3 +174,8 @@
   \ifconditional\displaylefttoright\numbers{#1}\else\LTRpersiandecimals{#1}\fi%
 }
 \defineconversion[contextdecimals][\contextdecimals]
+
+\definenote   [LTRfootnote][footnote]
+\setupnotation[LTRfootnote][before=\lefttoright]
+\definenote   [RTLfootnote][footnote]
+\setupnotation[RTLfootnote][before=\righttoleft]
