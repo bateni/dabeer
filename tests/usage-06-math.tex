@@ -44,7 +44,21 @@ E = mc^2.
 
 
 
-%در ادامه به یک محاسبه پیچیده‌تر نگاهی می‌اندازیم.
+در ادامه به یک مثال پیچیده‌تر نگاهی می‌اندازیم.
+
+%% BUG: \subformulanumber is undefined
+%% BUG or CHANGE: \formulanumber seems not to take any arguments.
+%% BUG: \vfrac produces Latin digits.
+\placeformula
+\startformula
+\leqalignno{
+  c^2 &= a^2 + b^2  &\formulanumber \cr
+  c &= \left(a^2 + b^2\right)^{\vfrac{1}{2}} &\formulanumber\cr  %% sub
+  a^2 + b^2 &= c^2  &\formulanumber \cr  %% sub
+  d^2 &= e^2        &\formulanumber\cr}
+\stopformula
+
+
 
 %% TODO: multi-line formula with integration and sums and greek letters.
 
