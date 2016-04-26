@@ -1,0 +1,96 @@
+\usemodule[dabeer]
+\setuppapersize[A5][A5]
+
+% TODO
+\define[1]{\LTRfootnote}{\footnote{\LTR{#1}}}
+\define[1]{\RTLfootnote}{\footnote{\RTL{#1}}}
+
+%% TODO: does not work?
+\hyphenation{پر-بازدید-کننده‌-ترین}
+
+\starttext
+
+در این‌جا به دنبال اهداف زیر هستیم.
+% packed is almost the same as nowhite but places blank before and after the group.
+\startitemize[nowhite]
+\item متن درون زیرنویس بایستی با الگوریتم دوجهتی پردازش شود.
+\item زیرنویس‌هایی که با استفاده از \type{\footnote} درج می‌شوند از
+  جهت متن حول خود برای تعیین سمت زیرنویس بهره می‌گیرند: اگر متن پیش از
+  آن‌ها راست‌به‌چپ بوده است، زیرنویس نیز در سمت راست صفحه جای می‌گیرد؛
+  و در غیر این صورت شاهد زیرنویس در سمت چپ صفحه خواهیم بود.
+\item زیرنویس‌های سمت راست با ارقام فارسی حروفچینی شوند و زیرنویس‌های
+  سمت چپ با ارقام لاتین.
+\item جهت نخستین زیرنویس صفحه مکان خط جداکننده زیرنویس‌ها را تعیین نماید.
+\item شماره زیرنویس در متن پیرو جهت متن پیش از آن باشد.
+\item دو دستور \type{\LTRfootnote} و \type{\RTLfootnote} مشابه دستور
+  اصلی بوده، اما برای تعیین جهت متن زیرنویس از پیش‌فرض استفاده
+  نمی‌نماید.
+\stopitemize
+
+\blank
+
+\startbuffer[farsifoot]
+این نمونه یک زیرنویس فارسی است.
+\stopbuffer
+
+\startbuffer[farsinumfoot]
+سال ۲۰۱۶ کبیسه است.
+\stopbuffer
+
+\startbuffer[englishfoot]
+This is an English footnote.
+\stopbuffer
+
+کار را با یک زیرنویس%
+\footnote{\getbuffer[farsifoot]}
+فارسی آغاز می‌کنیم و یک زیرنویس%
+\footnote{\getbuffer[englishfoot]}
+انگلیسی نیز می‌افزاییم.
+این زیرنویس%
+\footnote{\getbuffer[farsinumfoot]}
+شامل عدد می‌شود.
+
+\startLTR 
+Next we have an English paragraph with a Farsi
+footnote\footnote{\getbuffer[farsifoot]} and an
+English\footnote{\getbuffer[englishfoot]} one.  
+\stopLTR
+
+\input fa-google
+
+\startLTR 
+
+Next we have an English paragraph with an English
+footnote\footnote{\getbuffer[englishfoot]} and then a
+Farsi\footnote{\getbuffer[farsifoot]} one.  Let us then force an RTL
+footnote\RTLfootnote{\getbuffer[farsifoot]} inside this LTR paragraph.
+
+\stopLTR
+
+و در این متن راست‌به‌چپ یک زیرنویس%
+\LTRfootnote{\getbuffer[englishfoot]} چپ‌به‌راست درج می‌نماییم.  در
+ادامه به اعداد زیرنویس‌ها دقت کنید: اعداد بزرگ‌تر از ۱۰ به صورت صحیح
+نوشته شده‌اند.
+
+\dorecurse{3}{سلام\footnote{\getbuffer[farsifoot]} و } \dots
+
+\startLTR
+\dorecurse{3}{Hello\footnote{\getbuffer[englishfoot]} and } \dots
+\stopLTR
+
+\page
+
+خط جداساز زیرنویس‌ها%
+\LTRfootnote{English text.}
+ باید در سمت چپ قرار گیرد.
+
+\page
+
+\startLTR
+
+The footnote\RTLfootnote{متن فارسی.} should come after a right-aligned footnote rule.
+
+\stopLTR
+
+\stoptext
+

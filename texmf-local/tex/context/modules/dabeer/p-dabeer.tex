@@ -143,4 +143,20 @@
           [conversion=LTRpersiandecimals,numberstyle=\righttoleft]
 
 \defineseparatorset[dashsep][-,-,-,-]
+% TODO: is this sufficient?
 \setuphead[section][sectionseparatorset=dashsep]
+
+%D Footnote definitions.  We have several requirements here.
+%D \startitemize[packed]
+%D \item Footnote text should be processed by bidi algorithm.
+%D \item Footnote text should use surrounding text's direction to
+%D determine its direction at the bottom of the page.
+%D \item Footnote rule's location (left or right) is determined by
+%D the direction of the first paragraph of footnote text on the page.
+%D \stopitemize
+\setupfootnotes[rule=paragraph]
+\startsetups[bidi:footnotes]
+  \setupdirections[bidi=on]
+\stopsetups
+\setupnotes[footnote][setups=bidi:footnotes]
+\setupnotation[footnote][numberconversion=persiandecimals]
