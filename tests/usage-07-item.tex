@@ -13,5 +13,67 @@
 \item دیگر بس است!
 \stopitemize
 
+%% start/stopitem are needed for the row-first column mode.
+\startbuffer[itemlist]
+\startitem فروردین \stopitem
+\startitem اردیبهشت \stopitem
+\startitem خرداد \stopitem
+\startitem تیر \stopitem
+\startitem مرداد \stopitem
+\startitem شهریور \stopitem
+\startitem مهر \stopitem
+\startitem آبان \stopitem
+\startitem آذر \stopitem
+\startitem دی \stopitem
+\startitem بهمن \stopitem
+\startitem اسفند \stopitem
+\stopbuffer
+
+اینک چند مثال از فقرات چندستونه می‌بینیم.
+کافی است از کلید \type{columns} در تنظیمات فقرات استفاده کرده
+و تعداد ستون‌ها را به حروف بنویسید.
+در نمونه نخست برای صرفه‌جویی در فضا از کلید \type{packed} نیز بهره برده‌ایم.
+
+\startitemize[ع,columns,two,packed]
+\getbuffer[itemlist]
+\stopitemize
+
+\startitemize[ع,columns,three]
+\getbuffer[itemlist]
+\stopitemize
+
+\startitemize[ع,columns,four]
+\getbuffer[itemlist]
+\stopitemize
+
+\startitemize[ع,columns,five]
+\getbuffer[itemlist]
+\stopitemize
+
+دقت کنید که پایان صفحه ممکن است شمایل غیرمنتظره‌ای در این گونه فقرات
+پدید آورد.  با این حال، شماره‌ها منطقی است و تمام اعداد
+اختصاص‌داده‌شده در صفحه اول پیش از اعداد صفحه دوم خواهند بود.
+
+افزون بر این، گاهی تعداد ستون‌ها با آن چه شما انتظار دارید متفاوت از
+آب در می‌آید.  مثلاً در نمونه زیر، ما درخواست پنج ستون را داده‌ایم،
+اما تعداد فقرات به گونه‌ای است که دو سطر پنج‌ستونه کفاف همه را
+نمی‌دهد؛ و از سوی دیگر، پس از تعبیه نمودن ۳ سطر، ۴ ستون نخست همه فقرات
+را پوشش داده و ستون پنجم خالی خواهد ماند.
+
+\startitemize[ع,columns,five]
+\getbuffer[itemlist]
+\stopitemize
+
+
+حال اگر به جای \type{columns} از کلید \type{horizontal} استفاده
+نماییم، شماره‌گذاری فقرات اولویت را به سطرها می‌دهد.  این نوع
+شماره‌گذاری مناسب پرسش‌های چندگزینه‌ای است.  با این حال، توجه داشته
+باشید که در این‌جا فابلیت شکستن خطوط در میان یک فقره وجود ندارد.
+
+\startitemize[ع,horizontal,four]
+\getbuffer[itemlist]
+\stopitemize
+
 
 \stoptext
+

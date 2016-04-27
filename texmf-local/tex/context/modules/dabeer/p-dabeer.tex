@@ -212,4 +212,9 @@
 
 %D We add some more conversions and conversion shortcuts as promised.
 \defineconversion[ع][\LTRpersiandecimals]
-\defineconversion[ا][\persiannumerals]
+\defineconversion[ا][\arabicnumerals]
+
+%D Fixed direction of columns and columnized items to be RTL.
+%% Wolfgang says there is a way to directly set the following
+%% within startitemize but I could not figure it out.
+\setupmixedcolumns[itemgroupcolumns][direction=reverse]
