@@ -97,7 +97,7 @@
 %\definefontfamily [farsifont] [math] [Latin Modern Math] [default]
 %D The above line would give the default math font {\em without} Persian digits.
 %D I do not know why the following does not the work.
-\definefontfamily [farsifont] [math] [safarsimath]
+\definefontfamily [farsifont] [math] [farsimath]
 \setupbodyfont    [farsifont]
 
 %D We do not like to see special characters such as ZWNJ.
@@ -144,6 +144,7 @@
 
 %D {\it Warning}: For a strange reason the following does not work. \\
 %D \type{\define[1]\LTRpersiandecimals#1{\LTR{\persiandecimals{#1}}}}
+%% TODO: the above has an extra #1; try without that to make sure.
 \define[1]\LTRpersiandecimals{{\lefttoright\persiandecimals{#1}}}
 \defineconversion[LTRpersiandecimals][\LTRpersiandecimals]
 
@@ -211,10 +212,34 @@
 \definereferenceformat[eqref][left=(,right=)]
 
 %D We add some more conversions and conversion shortcuts as promised.
+\writestatus{loading}{'num' companion for dabeer}
+\registerctxluafile{p-dabeer-num}{0.1}
+
+\unprotect
+\define[1]\dabeerpersiannumerals{%
+  \clf_dabeer_persian_numerals\numexpr#1\relax{normal}}
+\define[1]\dabeeralternatepersiannumerals{%
+  \clf_dabeer_persian_numerals\numexpr#1\relax{alternate}}
+\define[1]\dabeerabjadnumerals{%
+  \clf_dabeer_abjad_numerals\numexpr#1\relax}
+\protect
+
 \defineconversion[ع][\LTRpersiandecimals]
-\defineconversion[ا][\arabicnumerals]
+\defineconversion[عددی][\LTRpersiandecimals]
+\defineconversion[آ][\dabeerpersiannumerals]
+\defineconversion[الف][\dabeeralternatepersiannumerals]
+%D We fix the abjads to use correct alef, heh, kaf and yeh.
+\defineconversion[ا][\dabeerabjadnumerals]  
+\defineconversion[ابجد][\dabeerabjadnumerals]
+
+
+%% TODO: implement the following.
+%\defineconversion[ح][\horoofnumerals]
+%\defineconversion[حرفی][\horoofnumerals]
+%\defineconversion[ت][\ordinalpersiannumerals]
+%\defineconversion[ترتیبی][\ordinalpersiannumerals]
 
 %D Fixed direction of columns and columnized items to be RTL.
-%% Wolfgang says there is a way to directly set the following
-%% within startitemize but I could not figure it out.
+%D To set this for an individual \type{\startitemize}, one can
+%D use \type{\startitemize[][direction=reverse]}.
 \setupmixedcolumns[itemgroupcolumns][direction=reverse]

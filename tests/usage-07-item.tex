@@ -6,7 +6,7 @@
 \item مورد نخست
 \item مورد بعدی
 \item و این یکی \dots
-  \startitemize[ا]
+  \startitemize[آ]
   \item در ادامه
   \item و هنوز
   \stopitemize
@@ -27,6 +27,13 @@
 \startitem دی \stopitem
 \startitem بهمن \stopitem
 \startitem اسفند \stopitem
+\stopbuffer
+
+\startbuffer[itemlistshort]
+\startitem شرق \stopitem
+\startitem غرب \stopitem
+\startitem شمال \stopitem
+\startitem جنوب \stopitem
 \stopbuffer
 
 اینک چند مثال از فقرات چندستونه می‌بینیم.
@@ -74,6 +81,33 @@
 \getbuffer[itemlist]
 \stopitemize
 
+در ادامه از شماره‌گذاری‌های دیگر ویژه فارسی استفاده می‌کنیم.  ابتدا با
+استفاده از کلید \type{الف} از الفبای فارسی بهره می‌گیریم و نشانه‌ها را
+میان پرانتز قرار داده و وسط‌چین می‌نماییم.
+
+\startitemize[الف,horizontal,four][left=(,right=),stopper=,itemalign=middle,distance=1ex]
+\getbuffer[itemlist]
+\getbuffer[itemlistshort]
+\getbuffer[itemlist]
+\getbuffer[itemlistshort]
+\stopitemize
+
+سپس با کلید \type{ابجد} که معادل \type{ا} می‌باشد از ترتیب ابجد عربی
+استفاده می‌کنیم.  این‌جا تنها پس از حروف پرانتز بسته گذاشته و نشانه را
+چپ‌چین نموده‌ایم.  توجه داشته باشید که کلیدهای \type{آ} و \type{ا}
+متفاوت‌اند.
+
+\startitemize[ابجد,horizontal,four][right=),stopper=,itemalign=left,distance=1ex]
+\getbuffer[itemlist]
+\getbuffer[itemlistshort]
+\getbuffer[itemlist]
+\stopitemize
+
+برای تکمیل کردن این بخش بد نیست ترکیب زیر را نیز به نمایش بگذاریم.
+
+\startitemize[عددی,columns,three][right=-,stopper=,itemalign=left,distance=1ex]
+\getbuffer[itemlistshort]
+\stopitemize
 
 \stoptext
 
