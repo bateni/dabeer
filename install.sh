@@ -19,7 +19,7 @@ if [ -x ${TEXROOT}/setuptex ]; then
     pushd `dirname $0`
     # current options: -v: verbose, -r: recursive, -c: use checksums, -p: permissions
     # other options: -i: itemize files -n do nothing
-    rsync -v -r -p --exclude '*~' -c --log-file=install.log  --stats texmf-local/ ${TEXROOT}/texmf-local
+    rsync -v -r -p --exclude '*~' --exclude '*#' -c --log-file=install.log  --stats texmf-local/ ${TEXROOT}/texmf-local
     popd
 #    context --generate
 else
