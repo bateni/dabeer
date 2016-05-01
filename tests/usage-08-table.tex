@@ -1,0 +1,188 @@
+\usemodule[dabeer]
+
+%% Here we showcase several table macros and investigate what works in
+%% thr RTL/Persian setting and what does.  In addition, we use the
+%% two-column environment for most of the document.
+
+%% Documentation for table mechanisms:
+%% https://www.tug.org/TUGboat/tb28-3/tb90mahajan.pdf
+%% https://www.tug.org/TUGboat/tb29-1/tb91mahajan.pdf
+%% http://wiki.contextgarden.net/TABLE
+%% http://www.pragma-ade.com/general/manuals/enattab.pdf
+
+\definedescription[explain][alternative=serried,text=توضیح ,width=fit,distance=1ex]
+
+\setuphead[section][style=bold]
+%\setuptables[align=left]  %% no effect
+\setupbodyfont[10pt]
+
+\starttext
+
+\CONTEXT\ دست‌کم چهار مکانیزم حروفچینی جداول را داراست.
+ابتدا به بسته \type{table} می‌پردازیم که قدیمی‌ترین و ساده‌ترین مجموعه
+برای تولید جداول کوچک است.
+روش مورد توصیه هانس بسته \type{TABLE} یا \quotation{جداول طبیعی} است
+که شمایلی شبیه به برچسب‌های \type{HTML} دارد و
+تا حدی روده‌درازانه است.
+%سه روش دیگر استفاده از 
+%\type{tabulate}، %\rtlhbox{}
+%\type{linetable} و
+%\type{natural table}
+% می‌باشد.
+
+
+با استفاده از گزینه \type{direction=left}
+می‌توان محیط چندستونه راست‌به‌چپ پدید آورد.
+
+\startcolumns[n=2,tolerance=verytolerant,direction=left]  %% rule=on
+
+
+\section{نوروز}
+\input fa-norooz 
+
+\leftaligned{%
+\starttable[|c|c|]
+\NC \REF[cB]{سال}
+\NC \REF[cB]{نماد چینی}
+\AR
+\HL[2]
+\NC ۱۳۹۰
+\NC خرگوش
+\AR
+\NC ۱۳۹۱
+\NC نهنگ
+\AR
+\NC ۱۳۹۲
+\NC مار
+\AR
+\NC ۱۳۹۳
+\NC اسب
+\AR
+\NC ۱۳۹۴
+\NC گوسفند
+\AR
+\NC ۱۳۹۵
+\NC میمون
+\AR
+\stoptable%
+}
+
+\explain
+%
+ در این‌جا از \type{starttable} استفاده نموده‌ایم.  متأسفانه به نظر
+ نمی‌رسد که این ساختارِ قدیمی بتواند برای محیط‌های راست‌به‌چپ خیلی
+ مناسب باشد.  از همه مهم‌تر جهت کلی جدول از چپ به راست است: یعنی به
+ صورت پیش‌فرض، ستون نخست با عنوان \quotation{سال} در سمت چپ قرار
+ می‌گیرد.  اما اگر کل جدول را درون محیط \type{midaligned} قرار دهیم،
+ جهت‌ها به شکل منطقی در می‌آیند. جدول بالا با استفاده از
+ \type{leftaligned} حروفچینی شده تا در سمت راست صفحه قرار گیرد.
+
+\section{سکه طلا}
+\input fa-coin
+
+\stopcolumns
+
+
+\section{شعر}
+% source: http://ganjoor.net/vazn/
+تا تاریخ هشتم بهمن‌ماه ۸۹ مجموعا
+۵۱۶٬۵۴۴
+ بیت شعر از طریق سایت گنجور در دسترس قرار گرفته است.
+آمار بیش‌ترین ابیات موجود در سایت را در زیر مشاهده می‌نمایید.
+
+\midaligned{%
+\starttable[|c|c|r|r|]
+\HL[2]
+\NC \REF[cB]{ردیف}
+\NC \REF[cB]{شاعر}
+\NC \REF[cB]{تعداد ابیات}
+\NC \REF[cB]{نسبت از کل}
+\AR
+\HL
+\NC ۱
+\NC عطار نیشابوری
+\NC ۹۴٬۹۹۳
+\NC ۱۸٫۳۹\٪
+\AR
+\NC ۲
+\NC جلال‌الدین محمد مولوی
+\NC ۶۵٬۹۶۷
+\NC ۱۲٫۷۷\٪
+\AR
+\NC ۳
+\NC ابوالقاسم فردوسی
+\NC ۴۹٬۶۰۹
+\NC ۹٫۶۰\٪
+\AR
+\NC ۴
+\NC بیدل دهلوی
+\NC ۳۲٬۳۳۳
+\NC ۶٫۲۶\٪
+\AR
+\NC ۵
+\NC نظامی گنجوی
+\NC ۲۷٬۷۹۳
+\NC ۵٫۳۸\٪
+\AR
+\NC ۶
+\NC قاآنی
+\NC ۲۰٬۵۵۶
+\NC ۳٫۹۸\٪
+%\AR
+\HL[2]
+\stoptable
+}
+
+\section{ریاضی}
+
+در ریاضیات گهگاه با ثوابت غریبی مواجه می‌شویم.
+اما کم‌کم آن‌ها را در فرمول‌های متعددی مشاهده می‌نماییم.
+
+\midaligned{%
+\starttable[|c|cm|cM|l|cp(4cm)|]
+\NC \REF[cB]{مُبدع}
+\NC \REF[cB]{ثابت} 
+\NC \REF[cB]{مقدار دقیق}
+\NC \REF[cB]{مقدار تقریبی} 
+\NC \REF[cB]{توضیحات}
+\NC  %?  It is almost necessary; never drop!
+\AR
+\HL  %% need more vertical space afterwards.
+\NC ارشمیدس
+\NC \pi \NC 3 \sum_{n=0}^{\infty}
+\frac {(2n)!} {n!^2 (2n+1) 16^n}
+\NC $3٫1415926\dots$ 
+\NC نسبت محیط دایره به قطرش
+\NC \AR
+%
+\NC اولر
+\NC e \NC \sum_{n=0}^{\infty}
+\frac 1{n!}
+\NC $2٫7182818\dots$
+\NC پرکاربرد در حسابان
+\NC \AR
+\NC اقلیدس
+\NC \phi
+\NC \frac{1+\sqrt 5}{2}
+\NC $1٫6180339\dots$
+\NC نسبت طول و عرضِ خوش‌ریخت‌ترین مستطیل!
+\NC \AR
+\stoptable%
+}
+
+\explain
+در جدول بالا از کلیدهای \type{m} و \type{M} برای ستون‌های دوم و سوم بهره برده‌ایم.
+بد نیست اندکی فاصله عمودی در بالا و پایین فرمول‌های ریاضی قرار دهیم.
+بایستی دید آیا امکان انجام خودکار این امر وجود دارد یا خیر؟
+%%
+%%
+به صورت پیش‌فرض، قلم‌های ریاضی فاقد نویسه‌های فارسی و عربی‌اند و لذا
+امکان استفاده از جداساز اعشار فارسی وجود ندارد.
+در این‌جا ما با استفاده از سازوکار عقب‌نشینی\LTRfootnote{fallback mechanism}
+این ایراد را برطرف نموده‌ایم.
+یک کاستی دیگر این مکانیزم عدم امکان تعریف جداساز اعشار فارسی برای تراز کردن اعداد آماری است.
+این کار برای جداساز عادی از طریق کلیدهای \type{n} و \type{N} و برای جداساز (اروپایی) ویرگول از طریق کلیدهای \type{q} و \type{Q} شدنی است.
+
+
+
+\stoptext
