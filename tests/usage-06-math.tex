@@ -10,6 +10,13 @@
   backgroundoffset=2pt
   ]
 
+%% some preliminary theorem/proof environments.
+%% https://mailman.ntg.nl/pipermail/ntg-context/2014/079923.html
+%% TODO: define a smart proof symbol
+\defineenumeration[theorem][text=قضیه ,alternative=serried,width=fit,numberconversion=persiandecimals]
+\defineenumeration[lemma][theorem][text=لم ,]
+\defineenumeration[proof][number=no,text=اثبات.,alternative=serried,width=fit,headstyle=italic,closesymbol=\mathematics{\square}] %right=.,stopper=. did not work
+
 \starttext
 
 حروفچینی متون ریاضی همواره از نِقاط قوت \TEX\ بوده است.
@@ -87,8 +94,16 @@ e^{i\pi} + 1 = 0.
 دستور \type{\definemathalignment}
 امکان تعریف عملگری برای حروفچینی برنامه‌های خطی فراهم می‌نماید.
 
-%% TODO: inline math $$ and \m{}
 
-%% TODO: maybe theorems, etc.
+\theorem
+مجموعه اعداد صحیح نسبت به عمل جمع بسته است.
+
+\proof
+یک عدد صحیح $x$ را در نظر بگیرید.
+واقعاً مدعای فوق نیازی به استدلال ندارد و اظهر من الشمس است!
+
+\lemma
+نسبت محیط دایره به قطر آن برابر با عدد $\pi$ است.
+
 
 \stoptext
