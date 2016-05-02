@@ -225,5 +225,68 @@
 }
 
 
+%\startcolumns[n=2,direction=left]
+
+\section{جغرافی}
+%% https://fa.wikipedia.org/wiki/%D9%81%D9%87%D8%B1%D8%B3%D8%AA_%DA%A9%D8%B4%D9%88%D8%B1%D9%87%D8%A7_%D8%A8%D8%B1_%D9%BE%D8%A7%DB%8C%D9%87_%D9%86%D8%B1%D8%AE_%D8%A8%D9%87%D8%B1%D9%87_%D8%A8%D8%A7%D9%86%DA%A9_%D9%85%D8%B1%DA%A9%D8%B2%DB%8C
+
+این فهرست نرخ بهره سالانه بانک مرکزی کشور ها برای بازپرداخت، سپرده
+گذاری برای پرداخت وام است. امار بر اساس کتاب حقایق جهان منتشر شده است.
+
+\midaligned%
+%\placetable{بیشترین آمار ثبت‌شده تورم}%
+{%
+%\lefttoright  %%% BUG
+\bTABLE[split=yes]
+% setups can go into bTABLE itself but it's more readable to separate them.
+\setupTABLE[frame=off,offset=1mm]
+\setupTABLE[column][1,2,3][align=center]
+\setupTABLE[column][3][alignmentcharacter={number->٫},aligncharacter=yes]
+\setupTABLE[column][2][width=3cm]
+%% can also use odd, even, first, last
+%% other keys: toprulethickness, leftrulethickness, etc.
+\setupTABLE[row][1][topframe=on,rulethickness=1pt,offset=1mm]
+\setupTABLE[row][2][topframe=on,rulethickness=0.5pt,offset=1mm]
+\setupTABLE[row][-1][bottomframe=on,rulethickness=1pt,offset=1mm]
+\startTABLEhead
+\bTR
+ \bTH رتبه \eTH  \bTH کشور \eTH  \bTH درصد بهره \eTH  
+\eTR
+\stopTABLEhead
+\bTR \bTD ۱ \eTD \bTD زیمبابوه \eTD
+ \bTD ۹۷۵٫۰\٪ \eTD
+\eTR
+\bTR \bTD ۲ \eTD \bTD ونزوئلا \eTD
+ \bTD ۲۸٫۵\٪ \eTD 
+ \eTR
+\bTR \bTD ۳ \eTD \bTD سائوتومه و پرنسیپ \eTD
+ \bTD ۲۸٫۰\٪ \eTD  
+ \eTR
+\bTR \bTD ۴ \eTD \bTD ترکیه \eTD
+ \bTD ۶٫۷۵\٪ \eTD
+ \eTR
+\bTR \bTD ۵ \eTD \bTD گینه \eTD
+ \bTD ۲۲٫۲۵\٪ \eTD
+ \eTR
+\bTR \bTD ۶ \eTD \bTD پاراگوئه \eTD
+ \bTD ۲۰\٪ \eTD
+ \eTR
+\bTR \bTD ۷ \eTD \bTD آنگولا \eTD
+ \bTD ۱۹٫۵۷\٪ \eTD
+ \eTR
+\bTR \bTD ۸ \eTD \bTD کاستاریکا\eTD
+ \bTD ۱۷\٪ \eTD
+ \eTR
+\eTABLE%
+}
+
+\explain
+ اگر جدول طبیعی را در پوشش\type{\midaligned} یا دستورات مشابه
+قرار دهیم، جهت راست‌به‌چپ درست می‌شود.  اما اگر آن را تنها یا درون
+\type{\placetable} استفاده نماییم، جدول چپ‌به‌راست خواهد بود.
+به علاوه، گزینه \type{split}
+درست کار نمی‌کند.  نمی‌دانم آیا به خاطر محیط دوستونه است یا به دلیل قرار داشتن در محیط راست‌به‌چپ.
+
+%\stopcolumns
 
 \stoptext
