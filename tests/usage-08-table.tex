@@ -11,6 +11,9 @@
 %% http://www.pragma-ade.com/general/manuals/enattab.pdf
 
 \definedescription[explain][alternative=serried,text=توضیح ,width=fit,distance=1ex]
+\setupcolors[state=start]
+\definecolor[back-1][s=0.8]
+\definecolor[back-2][s=0.9]
 
 \setuphead[section][style=bold]
 %\setuptables[align=left]  %% no effect
@@ -182,6 +185,44 @@
 این ایراد را برطرف نموده‌ایم.
 یک کاستی دیگر این مکانیزم عدم امکان تعریف جداساز اعشار فارسی برای تراز کردن اعداد آماری است.
 این کار برای جداساز عادی از طریق کلیدهای \type{n} و \type{N} و برای جداساز (اروپایی) ویرگول از طریق کلیدهای \type{q} و \type{Q} شدنی است.
+
+
+\section{ورزش}
+
+در ادامه تلاش می‌کنیم از بسته جدیدتر و توصیه‌شده \type{TABLE} استفاده کنیم.
+
+%\placetable{جدول رده‌بندی لیگ برتر ایران}
+\midaligned
+{%
+\bTABLE  
+% setups can go into bTABLE itself but it's more readable to separate them.
+\setupTABLE[frame=off,offset=1mm]
+\setupTABLE[column][1,2,3,4,5,6,7][align=center]
+\setupTABLE[column][2][width=3cm]
+%% can also use odd, even, first, last
+%% other keys: toprulethickness, leftrulethickness, etc.
+\setupTABLE[row][1][topframe=on,rulethickness=1pt,offset=1mm]
+\setupTABLE[row][2][topframe=on,rulethickness=0.5pt,offset=1mm]
+\setupTABLE[row][-1][bottomframe=on,rulethickness=1pt,offset=1mm]
+\setupTABLE[row][first][background=color,backgroundcolor=back-1]
+\setupTABLE[row][odd][background=color,backgroundcolor=back-2]
+\bTR
+ \bTH رده \eTH  \bTH تیم \eTH  \bTH برد \eTH  \bTH باخت \eTH  \bTH تساوی \eTH  \bTH تفاضل گل \eTH  \bTH امتیاز \eTH  
+\eTR
+\bTR \bTD ۱ \eTD \bTD استقلال \eTD
+ \bTD ۱۳ \eTD  \bTD ۱۲ \eTD  \bTD ۳ \eTD  \bTD ۱۶ \eTD  \bTD ۵۱ \eTD
+\eTR
+\bTR \bTD ۲ \eTD \bTD استقلال خوزستان \eTD
+ \bTD ۱۳ \eTD  \bTD ۱۲ \eTD  \bTD ۳ \eTD  \bTD ۱۶ \eTD  \bTD ۵۱ \eTD
+ \eTR
+\bTR \bTD ۳ \eTD \bTD پرسپولیس \eTD
+ \bTD ۱۴\eTD  \bTD ۹ \eTD  \bTD ۵ \eTD  \bTD ۱۳ \eTD  \bTD ۵۱ \eTD
+ \eTR
+\bTR \bTD ۴ \eTD \bTD تراکتورسازی \eTD
+ \bTD ۱۱ \eTD  \bTD ۱۲ \eTD  \bTD ۵ \eTD  \bTD ۱۰ \eTD  \bTD ۴۵ \eTD
+ \eTR
+\eTABLE%
+}
 
 
 
