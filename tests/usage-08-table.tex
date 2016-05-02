@@ -233,11 +233,15 @@
 این فهرست نرخ بهره سالانه بانک مرکزی کشور ها برای بازپرداخت، سپرده
 گذاری برای پرداخت وام است. امار بر اساس کتاب حقایق جهان منتشر شده است.
 
+%%% With split=yes, things become nasty.
 \midaligned%
-%\placetable{بیشترین آمار ثبت‌شده تورم}%
+%\placetable[][]{بیشترین آمار ثبت‌شده تورم}%
 {%
 %\lefttoright  %%% BUG
-\bTABLE[split=yes]
+%\righttoleft
+%% TODO: there should probably be a key to set to \righttoleft so that
+%% the table becomes RTL... Perhaps in placetable.
+\bTABLE[split=no]
 % setups can go into bTABLE itself but it's more readable to separate them.
 \setupTABLE[frame=off,offset=1mm]
 \setupTABLE[column][1,2,3][align=center]
@@ -253,6 +257,7 @@
  \bTH رتبه \eTH  \bTH کشور \eTH  \bTH درصد بهره \eTH  
 \eTR
 \stopTABLEhead
+\startTABLEbody
 \bTR \bTD ۱ \eTD \bTD زیمبابوه \eTD
  \bTD ۹۷۵٫۰\٪ \eTD
 \eTR
@@ -263,7 +268,7 @@
  \bTD ۲۸٫۰\٪ \eTD  
  \eTR
 \bTR \bTD ۴ \eTD \bTD ترکیه \eTD
- \bTD ۶٫۷۵\٪ \eTD
+ \bTD ۲۶٫۷۵\٪ \eTD
  \eTR
 \bTR \bTD ۵ \eTD \bTD گینه \eTD
  \bTD ۲۲٫۲۵\٪ \eTD
@@ -277,6 +282,7 @@
 \bTR \bTD ۸ \eTD \bTD کاستاریکا\eTD
  \bTD ۱۷\٪ \eTD
  \eTR
+\stopTABLEbody
 \eTABLE%
 }
 
