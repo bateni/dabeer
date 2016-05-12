@@ -13,5 +13,8 @@ Several small and medium-size documents for testing CONTEXT's RTL/Persian functi
 
 ### texmf-local/
 Contents of the package should be copied to the TeX tree.
-#### texmf-loca/tex/context/sample/
+#### texmf-local/tex/context/sample/
 Snippets copied from Farsi Wikipedia to avoid boring texts in the test files.
+
+### extras/
+Some useful scripts and config files.
