@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer,
-%D        version=0.11,
+%D        version=0.12,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=dabeer for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -25,9 +25,9 @@
 % along with this program; if not, write to the Free Software
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-\setgvalue{DabeerVersion}{0.11}
+\setgvalue{DabeerVersion}{0.12}
 %% TODO: add automatic conversion from Latin to Persian numbers in Lua.
-\setgvalue{DabeerVersionFa}{\LTR{۰٫۱۱}}
+\setgvalue{DabeerVersionFa}{\LTR{۰٫۱۲}}
 \writestatus{dabeer}{Loading module version \DabeerVersion}
 
 %D It is sometimes more convenient to use Persian percent sign for commenting.
@@ -89,18 +89,17 @@
 \definefontfallback[mathdigits][HM XNiloofar]   [digitsextendedarabicindic]
 \definefontfallback[mathdigits][HM XNiloofar]   [0x066A-0x066C]  %% arabic decimal, thousand separator and percent sign
 
-%D Setting \type{Mathroman} as a synonym works but then it seems to be a global definition.
-%D I did not manage to use the line after, which defines \type{farsimath} in the definition
-%D of the math font for \type{farsifont}.
-\definefontsynonym [MathRoman] [name:modern][features=math\mathsizesuffix,goodies=lm-math,fallbacks=mathdigits]
-%\definefontsynonym [farsimath] [name:modern][features=math\mathsizesuffix,goodies=lm-math,fallbacks=mathdigits]
+%D Typescript \type{farsimath} sets \type{Mathroman} appropriately.
+%D We should either use the \type{default} attribute below when using the
+%D typescript, or we should use the \type{name} (and perhaps \type{size})
+%D attributes here.  We'd like to have an option to use Euler's font.
+\starttypescript[math][farsimath] 
+\definefontsynonym[MathRoman][name:modern][features=math\mathsizesuffix,goodies=lm-math,fallbacks=mathdigits]
+\stoptypescript
 
 %D TeX ligatures are not desirable in mono fonts.
-\definefontfamily [farsifont] [mono] [ALM Fixed]         [features=arabic]
-%\definefontfamily [farsifont] [math] [Latin Modern Math] [default]
-%D The above line would give the default math font {\em without} Persian digits.
-%D I do not know why the following does not the work.
-\definefontfamily [farsifont] [math] [farsimath]
+\definefontfamily [farsifont] [mono][ALM Fixed]         [features=arabic]
+\definefontfamily [farsifont] [math][farsimath][default]
 \setupbodyfont    [farsifont]
 
 %D We do not like to see special characters such as ZWNJ.
