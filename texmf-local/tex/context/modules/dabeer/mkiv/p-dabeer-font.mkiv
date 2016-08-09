@@ -1,0 +1,80 @@
+%D \module
+%D   [      file=p-dabeer-font,
+%D        version=0.01,
+%D          title=\CONTEXT\ User Module,
+%D       subtitle=font companion to dabeer module for Persian typesetting,
+%D         author={Mohammad Hossein Bateni},
+%D           date=\currentdate,
+%D      copyright={Mohammad Hossein Bateni},
+%D        license=GNU General Public License v2]
+
+% dabeer module for Persian typesetting in ConTeXt
+% Copyright (C) 2016  Mohammad Hossein Bateni
+
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+%% TODO: These should receive font names via options.
+%D Basic font definitions:
+%D Previously, in order to avoid typescripts, we needed to use the
+%D module \type{simplefonts} and macros like \type{\setmainfont}
+%D defined therein.
+%D For some reason, the following does not work properly if we simply
+%D provide the font's name: In case of my Farsi fonts, the default
+%D style will then be italic.
+%D The additional benefit, however, is that we can map the italic style
+%D to oblique, which better suits Persian text.  However, neither italic
+%D nor oblique look good in Persian text.
+\definefontfeature[tlig][default][tlig=yes]  % for en- and em-dashes
+\definefontfeature
+   [farsihm]    
+   [mode=node,language=far,script=arab,
+    init=yes,medi=yes,fina=yes,isol=yes,
+    liga=yes,dlig=yes,rlig=yes,clig=yes,
+    mark=yes,mkmk=yes,kern=yes,curs=yes
+   ]
+\definefontfamily [farsifont] [serif] []
+                  [features={farsihm,tlig},
+                    tf=file:HM_XNiloofar.ttf,
+                    it=file:HM_XNiloofarOb.ttf,
+                    bf=file:HM_XNiloofarBd.ttf,
+                    bi=file:HM_XNiloofarObBd.ttf
+                  ]
+\definefontfamily [farsifont] [sans] []
+                  [features={farsihm,tlig},
+                    tf=file:HM_FMitra.ttf,
+                    it=file:HM_FMitraOb.ttf,
+                    bf=file:HM_FMitraBd.ttf,
+                    bi=file:HM_FMitraObBd.ttf
+                  ]
+
+%D Set up Farsi digits (from HMXNiloofar) in math fonts (with base Modern Math font).
+\resetfontfallback [mathdigits]
+\definefontfallback[mathdigits][HM XNiloofar]   [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback[mathdigits][HM XNiloofar Bd][digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback[mathdigits][HM XNiloofar]   [digitsextendedarabicindic]
+\definefontfallback[mathdigits][HM XNiloofar]   [0x066A-0x066C]  %% arabic decimal, thousand separator and percent sign
+
+%D Typescript \type{farsimath} sets \type{Mathroman} appropriately.
+%D We should either use the \type{default} attribute below when using the
+%D typescript, or we should use the \type{name} (and perhaps \type{size})
+%D attributes here.  We'd like to have an option to use Euler's font.
+\starttypescript[math][farsimath] 
+\definefontsynonym[MathRoman][name:modern][features=math\mathsizesuffix,goodies=lm-math,fallbacks=mathdigits]
+\stoptypescript
+
+%D TeX ligatures are not desirable in mono fonts.
+\definefontfamily [farsifont] [mono][ALM Fixed]         [features=arabic]
+\definefontfamily [farsifont] [math][farsimath][default]
+\setupbodyfont    [farsifont]
