@@ -122,12 +122,19 @@
 %D The following will fix \type{\quote} and \type{quotation}
 %D delimiters.  I have not seen the half-guillemots in any real text
 %D but I put it here as reference.  This is easy to change.
-%% TODO: The following does not work in English texts.  So perhaps I
-%% should put this under language customizations.
-\def\guilsinglleft{‹}
-\def\guilsinglright{›}
-\setupquotation[left=\leftguillemot,right=\rightguillemot]
-\setupquote[left=\guilsinglleft,right=\guilsinglright]
+%D As of 8/9/2016, 'persian' has been added as a language to CONTEXT.
+%D This automatically fixes some of the issues.  If one wants to use
+%D normal quotation marks, say, in English text, it is advisable to
+%D use \type{\language[en]} for that part of the text.
+\mainlanguage[pe]
+%% TODO: I still like to define the different single quote, and also
+%% customize dates.  Specifically we'd better define a fa-ir setting
+%% to use Jalali dates.  In June 2016, Jalali dates were added to
+%% CONTEXT but the numbers cannot still use Persian digits.
+%\def\guilsinglleft{‹}
+%\def\guilsinglright{›}
+%\setupquotation[left=\leftguillemot,right=\rightguillemot]
+%\setupquote[left=\guilsinglleft,right=\guilsinglright]
 
 %D In Persian documents, we prefer all the numbers to use Persian
 %D digits unless there is a reason not to (for instance, it is part of
