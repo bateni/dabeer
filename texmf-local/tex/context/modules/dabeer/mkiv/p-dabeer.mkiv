@@ -136,6 +136,12 @@
 %\setupquotation[left=\leftguillemot,right=\rightguillemot]
 %\setupquote[left=\guilsinglleft,right=\guilsinglright]
 
+%D The following enable the use of \type{\digits} macro to get correct
+%D Persian math decimal separtor.  It might have been, though, if this
+%D was customized for language `pe'.
+\def\digitsperiodsymbol{٫}
+\def\digitscommasymbol{٬}
+
 %D In Persian documents, we prefer all the numbers to use Persian
 %D digits unless there is a reason not to (for instance, it is part of
 %D an English text).  \CONTEXT\ provides several number conversions,
