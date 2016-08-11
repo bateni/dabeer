@@ -73,9 +73,18 @@
 %D This automatically fixes some of the issues.  If one wants to use
 %D normal quotation marks, say, in English text, it is advisable to
 %D use \type{\language[en]} for that part of the text.
-\def\shortjalalidatefmt  {jalali:to,yy>persian,/,M>persian,/,d>persian}
-\def\longjalalidatefmt   {jalali:to,day>persian,month:jalali,year>persian}
-\def\longgregoriandatefmt{day>persian,month,year>persian}
+\doifdefinedelse{dabeer_patch_core_con_date_persian_digits}
+{
+ \writestatus{dabeer}{we have the date patch}
+ \def\shortjalalidatefmt  {jalali:to,yy>persian,/,M>persian,/,d>persian}
+ \def\longjalalidatefmt   {jalali:to,day>persian,month:jalali,year>persian}
+ \def\longgregoriandatefmt{day>persian,month,year>persian}
+}{
+ \writestatus{dabeer}{no date patch applied}
+ \def\shortjalalidatefmt  {jalali:to,yy,/,M,/,d}
+ \def\longjalalidatefmt   {jalali:to,day,month:jalali,year}
+ \def\longgregoriandatefmt{day,month,year}
+}
 \installlanguage [fa][default=pe,date=\longjalalidatefmt]
 \mainlanguage[fa]
 %% TODO: I still like to define the different single quote, and also
