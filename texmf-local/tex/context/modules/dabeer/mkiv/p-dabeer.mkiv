@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer,
-%D        version=0.20,
+%D        version=0.21,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=dabeer for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -25,9 +25,9 @@
 % along with this program; if not, write to the Free Software
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-\setgvalue{DabeerVersion}{0.20}
+\setgvalue{DabeerVersion}{0.21}
 %% TODO: add automatic conversion from Latin to Persian numbers in Lua.
-\setgvalue{DabeerVersionFa}{\LTR{۰٫۲۰}}
+\setgvalue{DabeerVersionFa}{\LTR{۰٫۲۱}}
 \writestatus{dabeer}{Loading module version \DabeerVersion}
 
 %D It is sometimes more convenient to use Persian percent sign for commenting.
@@ -73,7 +73,11 @@
 %D This automatically fixes some of the issues.  If one wants to use
 %D normal quotation marks, say, in English text, it is advisable to
 %D use \type{\language[en]} for that part of the text.
-\mainlanguage[pe]
+\def\shortjalalidatefmt  {jalali:to,yy>persian,/,M>persian,/,d>persian}
+\def\longjalalidatefmt   {jalali:to,day>persian,month:jalali,year>persian}
+\def\longgregoriandatefmt{day>persian,month,year>persian}
+\installlanguage [fa][default=pe,date=\longjalalidatefmt]
+\mainlanguage[fa]
 %% TODO: I still like to define the different single quote, and also
 %% customize dates.  Specifically we'd better define a fa-ir setting
 %% to use Jalali dates.  In June 2016, Jalali dates were added to
