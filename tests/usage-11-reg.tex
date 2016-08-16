@@ -1,8 +1,19 @@
 
+%% This is a hacky way to fix the comma issue, partly.
+%% The comma after ``see also'' is still there.
+\def\MyRegisterPageCommand#1{%                                                  
+  \def\registerpageseparatorsymbol{،\space}%                                    
+  #1}
+
 \setupregister[index]
               [n=2,
                 pagecolor=blue,
-                compress=yes]
+                compress=yes,
+%% fixes bad shaping of ``see also'' and 
+%%       the direction for English entries.
+                pagestyle=\zwnj,
+                pagecommand=\MyRegisterPageCommand,
+              ]
 
 \setupregister[index][1][textcolor=darkred]
 \setupregister[index][2][textcolor=darkgreen,textstyle=bold]
