@@ -1,5 +1,8 @@
-%% TODO: \leqalignno macro seems broken with new versions of CONTEXT.  I need to look into this.
 \usemodule[dabeer]
+
+%% This is only for debugging and helps us understand better
+%% what CONTEXT is doing with math formulas.  Final document
+%% is supposed to turn the option off.
 \tracemathtrue
 
 \definemathframed[graymath]
@@ -10,6 +13,11 @@
   backgroundcolor=lightgray,
   backgroundoffset=2pt
   ]
+
+%% Option two looks better for Persian digits.
+%% Beware that automatic translation of Latin digits to Persian
+%% is not performed.
+\setconstant\vulgarfractionmethod\plustwo
 
 %% some preliminary theorem/proof environments.
 %% https://mailman.ntg.nl/pipermail/ntg-context/2014/079923.html
@@ -54,16 +62,16 @@ E = mc^2.
 
 در ادامه به یک مثال پیچیده‌تر نگاهی می‌اندازیم.
 
-%% BUG: \subformulanumber is undefined
-%% BUG or CHANGE: \formulanumber seems not to take any arguments.
-%% BUG: \vfrac produces Latin digits.
+%% We need to use Persian digits inside \vfrac if we want them.
+%% The conversion is done automatically.
 \placeformula
-\startformula
-\leqalignno{
-  c^2 &= a^2 + b^2  &\formulanumber \cr
-  c &= \left(a^2 + b^2\right)^{\vfrac{1}{2}} &\formulanumber\cr  %% sub
-  a^2 + b^2 &= c^2  &\formulanumber \cr  %% sub
-  d^2 &= e^2        &\formulanumber\cr}
+ \startformula
+ \startalign
+  \NC c^2 \EQ a^2 + b^2  \NR
+  \NC c \EQ \left(a^2 + b^2\right)^{\vfrac{۱}{۲}} \NR
+  \NC a^2 + b^2 \EQ c^2  \NR
+  \NC d^2 \EQ e^2        \NR
+ \stopalign
 \stopformula
 
 با استفاده از دستور \type{\mbox} می‌توان در محیط ریاضی از متن فارسی بهره برد.
