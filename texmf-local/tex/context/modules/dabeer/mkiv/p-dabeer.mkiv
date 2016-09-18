@@ -219,3 +219,68 @@
 %D To set this for an individual \type{\startitemize}, one can
 %D use \type{\startitemize[][direction=reverse]}.
 \setupmixedcolumns[itemgroupcolumns][direction=reverse]
+
+%D Indices (or their generalization in \CONTEXT\ called \type{register}s)
+%D need special case in the RTL environment, even more so if we want to
+%D get alphabetical ordering right.  On this the current sorting mechanism
+%D unfortunately does not support the full unicode collation algorithm.
+%D Nevertheless, another problem is that for a language like \quote{Persian},
+%D the correct sort order is also not fixed.  Looking at a few dictionaries
+%D or encyclopedias, even word lists published by the Persian Academy, we
+%D see some inconsistencies.  Here we provide simple definitions to get the
+%D basic issues right.
+\startluacode
+ defs = sorters.definitions 
+ fa_defs = {
+   replacements = {
+-- the replacement for alef is not okay because it produces
+-- undefined sort order for `اب' and `آب'.
+--     { "ا", "آ" },
+{"ك", "ک"},
+{"ي", "ی"},
+   },
+   entries = {
+["آ"] = "الف",
+["ه"] = "ه‍",
+   },
+   orders = { 
+     "آ", "ب", "پ", "ت", "ث",
+     "ج", "چ", "ح", "خ",
+"د", "ذ", "ر", "ز", "ژ",     
+"س", "ش", "ص", "ض", "ط", "ظ",     
+"ع", "غ", "ف", "ق", "ک", "گ",
+"ل", "م", "ن", "و", "ه", "ی",
+ },
+   lower = {
+["ا"] = "آ",
+["ء"] = "آ",
+["أ"] = "آ",
+["إ"] = "آ",
+["ؤ"] = "و",
+["ئ"] = "ی",
+   },
+
+   method="zm,pm,uc",
+ }
+
+ defs['fa'] = fa_defs
+\stopluacode
+
+\startsetups[register:interlinespace]
+    \setupinterlinespace[height=0.6,depth=0.4,line=3.2ex]
+\stopsetups
+
+\setupregister[index]
+              [n=2,
+%% to fix entries starting with English.
+               pagestyle=\zwnj,
+               pagecommand=\MyRegisterPageCommand,
+               compress=yes] 
+\setupmixedcolumns[register][direction=reverse,
+                             setups=register:interlinespace]
+%D Until \CONTEXT\ supports customized comma in registers, we use the
+%D following hack, that gets it right in page numbers.  But it cannot
+%D fix the one appearing before \quote{see also}.
+\def\MyRegisterPageCommand#1{%
+  \def\registerpageseparatorsymbol{،\space}%
+  #1}

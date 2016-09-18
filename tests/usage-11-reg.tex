@@ -1,24 +1,11 @@
-
-%% This is a hacky way to fix the comma issue, partly.
-%% The comma after ``see also'' is still there.
-\def\MyRegisterPageCommand#1{%                                                  
-  \def\registerpageseparatorsymbol{،\space}%                                    
-  #1}
-
 \setupregister[index]
               [n=2,
                 pagecolor=blue,
                 compress=yes,
-%% fixes bad shaping of ``see also'' and 
-%%       the direction for English entries.
-                pagestyle=\zwnj,
-                pagecommand=\MyRegisterPageCommand,
               ]
 
 \setupregister[index][1][textcolor=darkred]
 \setupregister[index][2][textcolor=darkgreen,textstyle=bold]
-
-\setupmixedcolumns[register][direction=reverse]
 
 \usemodule[dabeer]
 \starttext
@@ -44,7 +31,10 @@
 
 
 اهدافی که انتظار داریم از طریق نمایه‌زنی فارسی تأمین شود
-به این شرح است.
+به این شرح است.  برخی از اینان در شرایط فعلی حل‌شده‌اند،
+و برخی کماکان نیازمند توجه و گه‌گاه ایجاد تغییراتی فراتر
+از تغییرات محلی می‌باشند.
+
 \startitemize
 \item
 عنوان بخش مورد نظر \quote{نمایه} باشد.
@@ -57,7 +47,7 @@
 \item
 ترتیب حروف در نمایه باید بر اساس الفبای فارسی باشد.
 \item
-حروف اصلی نظیر ك و ي بایستی کاملاًً مانند حروف مشابه فارسی‌شان عمل کنند.
+حروف اصلی نظیر ك و ي بایستی کاملاً مانند حروف مشابه فارسی‌شان عمل کنند.
 ٪٪ یعنی چه؟
 \item
 حرکات و تشدید و \dots\ در
@@ -68,7 +58,7 @@
 \item
 از ویرگول فارسی استفاده شود.
 \item
-توضیحات اضافه نظیر \quotation{رجوع شود} با رعایت شکل‌دهی حروف فارسی چیده شود.
+توضیحات اضافه نظیر \quotation{رجوع شود} با رعایت شکل‌دهی حروف فارسی حروفچینی شود.
 \item
 تکرار واژگانی نظیر \quote{آب} و \quote{اب} ایرادی برای مرتب‌سازی ایجاد ننماید.
 \item
@@ -149,7 +139,8 @@
 \index{یراق}
 \index{يتيم} % arabic yeh
 \index{ذرت}
-سلام
+از‌آن‌جایی‌که صفحات خالی در ایجاد نمایه باعث دردسر می‌گردند،
+دراین‌جا متنی کوتاه قرار داده‌ایم.
 \page
 \index{سلام}
 \index{گوگل}
