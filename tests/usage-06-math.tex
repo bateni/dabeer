@@ -22,9 +22,28 @@
 %% some preliminary theorem/proof environments.
 %% https://mailman.ntg.nl/pipermail/ntg-context/2014/079923.html
 %% TODO: define a smart proof symbol
-\defineenumeration[theorem][text=قضیه ,alternative=serried,width=fit,numberconversion=persiandecimals]
+\defineenumeration
+    [theorem]
+    [text=قضیه ,
+     alternative=serried,
+     width=fit,
+     numberconversion=persiandecimals,
+     distance=0.5em]
+\defineenumeration[titledtheorem][theorem][title=yes]
 \defineenumeration[lemma][theorem][text=لم ,]
-\defineenumeration[proof][number=no,text=اثبات.,alternative=serried,width=fit,headstyle=italic,closesymbol=\mathematics{\square}] %right=.,stopper=. did not work
+%% Proof environment is preliminary and does not do anything special
+%% if the proofs ends in a formula.  Note that the proper way to 
+%% typeset such a proof is for the QED symbol to appear inside the
+%% formula and not on a line by itself!
+\defineenumeration
+   [proof] 
+   [number=no,
+   text=اثبات.,
+   alternative=serried,
+   width=fit,
+   distance=0.5em,
+   headstyle=italic,
+   closesymbol=\mathematics{\square}]
 
 \starttext
 
@@ -89,19 +108,33 @@ e^{i\pi} + 1 = 0.
 برای حروفچینی عبارات چندخطی ریاضی بهتر است از \type{\startalign} بهره بگیریم.
 صورت کلی برنامه خطی به شکل زیر است.
 
-\placeformula
-%\placesubformula  % does not work properly.  acts with normal formula numbering.
+\placesubformula
 \startformula
 \startalign[n=5,align={left,right,left,middle,right}]
 \NC \min   \NC  \sum_i c_i x_i    \NC           \NC \quad \NC \NR[lp:0]
-\NC \mbox{subject to }   \NC  \sum_i a_{ij} x_i \NC \geq b_j \NC \NC \forall j \NR %[+][lp:1]
-\NC                      \NC  x_i               \NC \geq 0   \NC \NC \forall i. \NR %[+][lp:2]
+\NC \mbox{subject to }   \NC  \sum_i a_{ij} x_i \NC \geq b_j \NC \NC \forall j \NR[lp:1][a]
+\NC                      \NC  x_i               \NC \geq 0   \NC \NC \forall i. \NR[lp:2][b]
 \stopalign
 \stopformula
 
 همان طور که از فلسفه \CONTEXT\ برمی‌آید،
 دستور \type{\definemathalignment}
 امکان تعریف عملگری برای حروفچینی برنامه‌های خطی فراهم می‌نماید.
+
+همان‌طور که انتظار می‌رود امکان بهره‌گیری از شماره‌گزاری وابسته
+برای فرمول‌ها در کانتکست وجود دارد.  اما درحال‌حاضر به‌نظر می‌رسد
+که اِعمال تغییرات در جهت و نوع شماره‌گزاری به‌طورکامل پشتیبانی
+نمی‌شود.  به نمونه زیر توجه کنید.
+\startsubformulas[eq:Rel]
+\placeformula
+\startformula
+\startalign
+\NC c^2 \NC= a^2 + b^2  \NR[eq:a]
+\NC a^2 + b^2 \NC = c^2  \NR[eq:b]
+\NC d^2 \NC = e^2        \NR[eq:c]
+\stopalign
+\stopformula
+\stopsubformulas
 
 
 \theorem
@@ -117,5 +150,11 @@ e^{i\pi} + 1 = 0.
 \startlemma
 \input fa-norooz
 \stoplemma
+
+\starttitledtheorem{فیثاغورث}
+در هر مثلث قائم‌الزاویه مجموع مجذور اندازه
+دو ضلع مجاور زاویه قائمه برابر است با
+مجذور اندازه وتر.
+\stoptitledtheorem
 
 \stoptext
