@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer-font,
-%D        version=0.10,
+%D        version=0.12,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=font companion to dabeer module for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -60,43 +60,26 @@
 \definetypescriptprefix[s:vazir][Vazir]
 \definetypescriptprefix[f:vazir][Vazir]
 
-%D Many Persian fonts suffer from bad kerning.  Here I fix a few issues.
-\startluacode
-fonts.handlers.otf.addfeature {
-            name = "niloofarkern",
-            type = "pair",
-            data = {
-            --    hyphen     initial keh, initial gaf
-                [0x2010] = {
-                  [0xFB90] = { false, { 0, 0, -500, 0 } },
-                  [0xFB94] = { false, { 0, 0, -500, 0 } }
-                },
-            }
-        }
-
-fonts.handlers.otf.addfeature {
-            name = "mitrakern",
-            type = "pair",
-            data = {
-            --  final dal    initial keh, initial gaf
-                [0xFEAA] = {
-                  [0xFB90] = { false, { 0, 0, -300, 0 } },
-                  [0xFB94] = { false, { 0, 0, -300, 0 } }
-                },
-            }
-       }
-\stopluacode
-\definefontfeature[niloofarfix][niloofarkern=yes]
-\definefontfeature[mitrafix]   [mitrakern=yes]
+%D Many Persian fonts suffer from bad kerning.  I fix a few issues in the goodies files.
+\definefontfeature[niloofarfix][goodies=niloofar-goodies,extrakerns=yes]
+\definefontfeature[mitrafix]   [goodies=mitra-goodies,extrakerns=yes]
 \definefontfeature[samimfix]   [default]
 
 %D XS2 fonts can be mapped using the following typescript.
 \starttypescript [serif,sans,define] [niloofar,mitra] [name]
  \startexpanded
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]  [\typescriptprefix{f:\typescripttwo}]    [features={flang,arabic,tlig,\typescripttwo fix}]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]   [\typescriptprefix{f:\typescripttwo}Bd]  [features={flang,arabic,tlig,\typescripttwo fix}]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]   [\typescriptprefix{f:\typescripttwo}It]  [features={flang,arabic,tlig,\typescripttwo fix}]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt] [\typescriptprefix{f:\typescripttwo}BdIt][features={flang,arabic,tlig,\typescripttwo fix}]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [\typescriptprefix{f:\typescripttwo}]
+                     [features={flang,arabic,tlig,\typescripttwo fix}]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [\typescriptprefix{f:\typescripttwo}Bd]  
+                     [features={flang,arabic,tlig,\typescripttwo fix}]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [\typescriptprefix{f:\typescripttwo}It]  
+                     [features={flang,arabic,tlig,\typescripttwo fix}]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [\typescriptprefix{f:\typescripttwo}BdIt]
+                     [features={flang,arabic,tlig,\typescripttwo fix}]
  \stopexpanded
 \stoptypescript
 
@@ -109,28 +92,48 @@ fonts.handlers.otf.addfeature {
   \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
   \definefontfallback[dejavudefault][dejavusans] [generalpunctuation] [check=yes,force=no]
  \startexpanded
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]  [file:\typescriptprefix{f:\typescripttwo}.ttf]     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]   [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf][features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]   [file:\typescriptprefix{f:\typescripttwo}.ttf]     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt] [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf][features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [file:\typescriptprefix{f:\typescripttwo}.ttf]     
+                     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [file:\typescriptprefix{f:\typescripttwo}.ttf]     
+                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
  \stopexpanded
 \stoptypescript
 
 %D The mono font ``ALM Fixed'' has only one shape.
 \starttypescript [mono] [alm] [name]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]  [\typescriptprefix{f:\typescripttwo}][features=arabic]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]   [\typescriptprefix{f:\typescripttwo}][features=arabic]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]   [\typescriptprefix{f:\typescripttwo}][features={arabic,slanted}]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt] [\typescriptprefix{f:\typescripttwo}][features={arabic,slanted}]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [\typescriptprefix{f:\typescripttwo}]
+                     [features=arabic]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [\typescriptprefix{f:\typescripttwo}]
+                     [features=arabic]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [\typescriptprefix{f:\typescripttwo}]
+                     [features={arabic,slanted}]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [\typescriptprefix{f:\typescripttwo}]
+                     [features={arabic,slanted}]
 \stoptypescript
 
 %D After the fonts are mapped to symbolic names, we need to do one more
 %D level of mapping to get Serif/Sans/Mono aliases right.
 \starttypescript [serif,sans,mono] [niloofar,mitra,alm,samim,vazir] [name]
-  \definefontsynonym [\typescriptprefix{\typescriptone}]           [\typescriptprefix{s:\typescripttwo}Reg]
-  \definefontsynonym [\typescriptprefix{\typescriptone}Bold]       [\typescriptprefix{s:\typescripttwo}Bd]
-  \definefontsynonym [\typescriptprefix{\typescriptone}Italic]     [\typescriptprefix{s:\typescripttwo}It]
-  \definefontsynonym [\typescriptprefix{\typescriptone}BoldItalic] [\typescriptprefix{s:\typescripttwo}BdIt]
+  \definefontsynonym [\typescriptprefix{\typescriptone}]
+                     [\typescriptprefix{s:\typescripttwo}Reg]
+  \definefontsynonym [\typescriptprefix{\typescriptone}Bold]
+                     [\typescriptprefix{s:\typescripttwo}Bd]
+  \definefontsynonym [\typescriptprefix{\typescriptone}Italic]
+                     [\typescriptprefix{s:\typescripttwo}It]
+  \definefontsynonym [\typescriptprefix{\typescriptone}BoldItalic]
+                     [\typescriptprefix{s:\typescripttwo}BdIt]
 \stoptypescript
 
 %D Math is always more complicated.  We first define ``BaseMath''.

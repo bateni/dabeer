@@ -1,0 +1,25 @@
+local kern_300 = { false, { 0, 0, -300, 0 } }
+return {
+  name = "mitra-fix",
+  version = "1.00",
+  comment = "Apply certain fixes, mostly kerns, to FMitra font",
+  author = "Mohammad Hossein Bateni",
+  features = {
+	{
+    	name = "extrakerns",
+        type = "pair",
+        data = {
+            --  final dal:    initial keh, initial gaf
+            [0xFEAA] = {
+               [0xFB90] = kern_300,
+               [0xFB94] = kern_300
+            },
+            --  isolated dal: initial keh, initial gaf            
+            [0x62F] = {
+               [0xFB90] = kern_300,
+               [0xFB94] = kern_300
+            },
+        },
+    },
+  },
+}
