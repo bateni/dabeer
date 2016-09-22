@@ -56,12 +56,17 @@ darkred		N	[$#^_{}&]
 
 # start/stop
 darkgreen	N	\\(?:start|stop)[A-Za-z]+
+darkgreen	N	\\(?:شروع|پایان)‌[A-Za-zآ-يپژگچکی‍‌]+
+
+# define/setup
+darkgreen	N	\\(?:define|setup)[A-Za-zآ-يپژگچکی]+
 
 # control sequences
-blue		N	\\(?:[A-Za-z@]+|.)
+blue		N	\\(?:[A-Za-z@آ-يپژگچکی‍‌]+|.)
 
 # comments
 red			Y	%.*
+red			Y	٪.*
 
 # other possibilities to be added....
 # [BibTeX]
