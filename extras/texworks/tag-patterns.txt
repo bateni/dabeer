@@ -26,4 +26,11 @@
 
 # Tags with level = 0 are special bookmarks that are separate from the hierarchy
 # and collected in a separate flat list.
+0	^٪:\s*(.+)
 0	^%:\s*(.+)
+
+0	^\s*\\environment\s+([\S]+)
+0	^\s*\\component\s+([\S]+)
+0	^\s*\\project\s+([\S]+)
+0	^\s*\\product\s+([\S]+)
+
