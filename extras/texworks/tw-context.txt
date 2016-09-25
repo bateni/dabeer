@@ -5,6 +5,8 @@
 \usemodule[#INS#]
 
 \define[#INS#]\•{•}
+\definestartstop[#INS#][•]
+\setcharacterstripping[1]
 \iffirstargument
 \ifsecondargument
 \ifthirdargument
@@ -12,12 +14,16 @@
 \dodoubleempty
 \dotripleempty
 \leavevmode
+\writestatus{#INS#}{•}
 
 \setupinterlinespace[#INS#]
 \setupalign[#INS#]
 \setupmargindata[#INS#][•]
+\setupdirections
+\setupwhitespace[#INS#]
 
 \definefontsolution[#INS#][•]
+\definemeasure[#INS#][•]
 
 \definemathframed[#INS#][•]
 \defineenumeration[#INS#][•]
@@ -61,6 +67,30 @@
 \startitemize[#INS#]#RET#\item•#RET#\stopitemize
 \item
 \footnote{#INS#}
+
+\installlanguage[#INS#][•]
+\mainlanguage[#INS#]
+\language[#INS#]
+\quote{#INS#}
+\quotation{#INS#}
+\setuppagenumber[#INS#]
+\setuphead[#INS#][•]
+\defineseparatorset[#INS#][•]
+\setupfootnotes[#INS#]
+\setupnotes[#INS#][•]
+\setupnotation[#INS#][•]
+\definenote[#INS#][•]
+\setupformula[•]
+\definereferenceformat[#INS#][•]
+\registerctxluafile{#INS#}{•}
+\unprotect
+\protect
+\startluacode#RET##INS##RET#\stopluacode
+\setupregister[#INS#][•]
+\setupmixedcolumns[#INS#][•]
+\defineconversion[#INS#][•]
+\zwnj
+\zwj
 \LTRfootnote{#INS#}
 \eqref[#INS#]
 
