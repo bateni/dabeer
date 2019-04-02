@@ -55,15 +55,15 @@
 \definetypescriptprefix[f:mitra][HMFMitra]
 \definetypescriptprefix[s:alm][ALM]
 \definetypescriptprefix[f:alm][ALMFixed]
-\definetypescriptprefix[s:samim][Samim]
-\definetypescriptprefix[f:samim][Samim]
+\definetypescriptprefix[s:sahel][Sahel]
+\definetypescriptprefix[f:sahel][Sahel]
 \definetypescriptprefix[s:vazir][Vazir]
 \definetypescriptprefix[f:vazir][Vazir]
 
 %D Many Persian fonts suffer from bad kerning.  I fix a few issues in the goodies files.
 \definefontfeature[niloofarfix][goodies=niloofar-goodies,extrakerns=yes]
 \definefontfeature[mitrafix]   [goodies=mitra-goodies,extrakerns=yes]
-\definefontfeature[samimfix]   [default]
+\definefontfeature[sahelfix]   [default]
 
 %D XS2 fonts can be mapped using the following typescript.
 \starttypescript [serif,sans,define] [niloofar,mitra] [name]
@@ -86,7 +86,7 @@
 %D Fonts created by Saber Rastikerdar can be mapped as follows.
 %% TODO: Why doesn't tlig work here?
 %% TODO: Are the relative sizes correct?
-\starttypescript [serif,sans,define] [samim,vazir] [name]
+\starttypescript [serif,sans,define] [sahel,vazir] [name]
   \resetfontfallback [dejavudefault]
   \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
   \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
@@ -125,7 +125,7 @@
 
 %D After the fonts are mapped to symbolic names, we need to do one more
 %D level of mapping to get Serif/Sans/Mono aliases right.
-\starttypescript [serif,sans,mono] [niloofar,mitra,alm,samim,vazir] [name]
+\starttypescript [serif,sans,mono] [niloofar,mitra,alm,sahel,vazir] [name]
   \definefontsynonym [\typescriptprefix{\typescriptone}]
                      [\typescriptprefix{s:\typescripttwo}Reg]
   \definefontsynonym [\typescriptprefix{\typescriptone}Bold]
@@ -163,10 +163,10 @@
   \definefontsynonym [MathRoman] [BaseMath] [fallbacks=mathdigits]
 \stoptypescript
 
-\starttypescript [math] [samim] [name]
+\starttypescript [math] [sahel] [name]
   \resetfontfallback [mathdigits]
-  \definefontfallback[mathdigits][Samim]     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsnormal]
-  \definefontfallback[mathdigits][Samim-Bold][digitsextendedarabicindic][check=yes,force=yes,offset=digitsbold]
+  \definefontfallback[mathdigits][Sahel]     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsnormal]
+  \definefontfallback[mathdigits][Sahel-Bold][digitsextendedarabicindic][check=yes,force=yes,offset=digitsbold]
   \definefontfallback[mathdigits][dejavusans][generalpunctuation][check=yes,force=no]
   %% arabic decimal, thousand separator and percent sign
   \definefontfallback[mathdigits][dejavusans][0x66A-0x66C][check=yes,force=no]
