@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer-font,
-%D        version=0.13,
+%D        version=0.15,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=font companion to dabeer module for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -26,8 +26,14 @@
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 %% TODO: We should receive font names via options.
-%% TODO: We'd better break this up into typescript files, etc.
 %% TODO: Some of these definitions should go into a "common" typescript file.
+
+%D We no longer load a default Farsi font.  One needs the following:
+%D \starttyping
+%D \usemodule[dabeer]
+%D \usetypescriptfile[dabeer-formal]
+%D \setupbodyfont[farsiformal]
+%D \stoptyping
 
 \tracetypescriptstrue
 \writestatus{dabeer}{Setting up main document fonts}
@@ -48,14 +54,7 @@
 \definefontfeature[dlang][language=dflt]
 \definefontfeature[flang][language=far]
 
-%D Load definitions for Saber Rastikerdar's fonts
-\usetypescriptfile[rastikerdar]  %% or type-imp-rastikerdar?
-%D Load definitions for XS2 and HM fonts
-\usetypescriptfile[movahedian]  %% or type-imp-movahedian?
-%D Load definitions for Idris Samawi's fonts
-\usetypescriptfile[samawi]  %% or type-imp-samawi?
-
-%D Math is always more complicated.  We first define ``BaseMath''.
+%D Math is always more complicated.  We first define \quotation{BaseMath}.
 %% TODO: for BaseMath, we'd better use features=math\mathsizesuffix, goodies, etc.?
 \starttypescript [math] [modern] [name]
   \definefontsynonym [BaseMath]  [name:modern] [features=math\mathsizesuffix]
@@ -72,14 +71,5 @@
   \definefontsynonym [MathRoman] [BaseMath]
 \stoptypescript
 
-%D Finally we define our font family.
-\starttypescript  [farsifont]
-  \definetypeface [farsifont][rm] [serif][niloofar]       [default]
-  \definetypeface [farsifont][ss] [sans] [mitra]          [default]
-  \definetypeface [farsifont][tt] [mono] [alm]            [default]
-  \definetypeface [farsifont][mm] [math] [modern,niloofar][default]
-\stoptypescript
-
-\setupbodyfont [farsifont]
 \definebodyfontenvironment[default][em=italic]
 

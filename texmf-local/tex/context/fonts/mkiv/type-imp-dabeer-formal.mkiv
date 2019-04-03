@@ -1,0 +1,50 @@
+%D \module
+%D   [      file=type-imp-dabeer-formal,
+%D        version=0.15,
+%D          title=\CONTEXT\ User Typescript Macros,
+%D       subtitle=Formal Farsi font,
+%D         author={Mohammad Hossein Bateni},
+%D           date=\currentdate,
+%D      copyright={Mohammad Hossein Bateni},
+%D        license=GNU General Public License v2]
+
+% dabeer module for Persian typesetting in ConTeXt
+% Copyright (C) 2016-2019  Mohammad Hossein Bateni
+
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+%D Load definitions for XS2 and HM fonts
+\loadtypescriptfile[movahedian]  %% for Niloofar and Mitra
+%D Load definitions for Idris Samawi's fonts
+\loadtypescriptfile[samawi]      %% for ALM
+
+%D Finally we define our font family.
+\starttypescript  [farsiformal]
+  \definetypeface [farsiformal][rm] [serif][niloofar] [default]
+  \definetypeface [farsiformal][ss] [sans] [mitra]    [default]
+  \definetypeface [farsiformal][tt] [mono] [alm]      [default]
+  \definetypeface [farsiformal][mm] [math] [modern]   [default]
+  \definetypeface [farsiformal][mm] [math] [niloofar] [default]
+%D The following used to work in place of the above two lines.
+%D But now it leads to incorrect order for loading the two fonts.
+%%  \definetypeface [farsiformal][mm] [math] [modern,niloofar][default]
+\stoptypescript
+
+%D Now it seems like we'd be done with the following command:
+%% \setupbodyfont [farsiformal]
+%D However, if we include it, \usetypescriptfile[dabeer-formal] fails with memory exceeded.
+%D Interestingly things would work with \loadtypescriptfile[dabeer-formal].
+%D Now instead, we need to call the \quotation{setup} command after the \quotation{use} command above.
+
