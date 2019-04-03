@@ -1,0 +1,90 @@
+%D \module
+%D   [      file=type-imp-rastikerdar,
+%D        version=0.14,
+%D          title=\CONTEXT\ User Typescript Macros,
+%D       subtitle=Fonts made by Saber Rastikerdar (https://github.com/rastikerdar),
+%D         author={Mohammad Hossein Bateni},
+%D           date=\currentdate,
+%D      copyright={Mohammad Hossein Bateni},
+%D        license=GNU General Public License v2]
+
+% dabeer module for Persian typesetting in ConTeXt
+% Copyright (C) 2016-2019  Mohammad Hossein Bateni
+
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+%% TODO: inside collection or outside?
+\definetypescriptprefix[s:sahel][Sahel]
+\definetypescriptprefix[f:sahel][Sahel]
+\definetypescriptprefix[s:vazir][Vazir]
+\definetypescriptprefix[f:vazir][Vazir]
+
+\starttypescriptcollection[saber]
+
+\definefontfeature[sahelfix]   [default]
+
+%D Fonts created by Saber Rastikerdar can be mapped as follows.
+%% TODO: Why doesn't tlig work here?
+%% TODO: Are the relative sizes correct?
+%% TODO: Use different fallbacks for sans and serif
+\starttypescript [serif,sans,define] [sahel,vazir] [name]
+  \resetfontfallback [dejavudefault]
+  \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
+  \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
+  \definefontfallback[dejavudefault][dejavusans] [generalpunctuation] [check=yes,force=no]
+ \startexpanded
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [file:\typescriptprefix{f:\typescripttwo}.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [file:\typescriptprefix{f:\typescripttwo}.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+ \stopexpanded
+\stoptypescript
+
+
+%D After the fonts are mapped to symbolic names, we need to do one more
+%D level of mapping to get Serif/Sans/Mono aliases right.
+\starttypescript [serif,sans,mono] [sahel,vazir] [name]
+  \definefontsynonym [\typescriptprefix{\typescriptone}]
+                     [\typescriptprefix{s:\typescripttwo}Reg]
+  \definefontsynonym [\typescriptprefix{\typescriptone}Bold]
+                     [\typescriptprefix{s:\typescripttwo}Bd]
+  \definefontsynonym [\typescriptprefix{\typescriptone}Italic]
+                     [\typescriptprefix{s:\typescripttwo}It]
+  \definefontsynonym [\typescriptprefix{\typescriptone}BoldItalic]
+                     [\typescriptprefix{s:\typescripttwo}BdIt]
+\stoptypescript
+
+%D After defining BaseMath in dabeer-font, we use fallbacks to get the Persian digits right.
+\starttypescript [math] [sahel] [name]
+  \resetfontfallback [mathdigits]
+  \definefontfallback[mathdigits][Sahel]
+		     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsnormal]
+  \definefontfallback[mathdigits][Sahel-Bold]
+		     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsbold]
+  \definefontfallback[mathdigits][dejavusans][generalpunctuation][check=yes,force=no]
+  %% arabic decimal, thousand separator and percent sign
+  \definefontfallback[mathdigits][dejavusans][0x66A-0x66C][check=yes,force=no]
+  \definefontsynonym [MathRoman] [BaseMath]  [fallbacks=mathdigits]
+\stoptypescript
+
+\stoptypescriptcollection

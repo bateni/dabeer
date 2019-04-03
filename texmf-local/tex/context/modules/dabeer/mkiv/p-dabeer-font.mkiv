@@ -27,6 +27,7 @@
 
 %% TODO: We should receive font names via options.
 %% TODO: We'd better break this up into typescript files, etc.
+%% TODO: Some of these definitions should go into a "common" typescript file.
 
 \tracetypescriptstrue
 \writestatus{dabeer}{Setting up main document fonts}
@@ -47,94 +48,12 @@
 \definefontfeature[dlang][language=dflt]
 \definefontfeature[flang][language=far]
 
-%D Our typescripts will be written generically as much as possible.
-%D These definitions are necessary to customize for each font.
-\definetypescriptprefix[s:niloofar]   [Niloofar]
-\definetypescriptprefix[f:niloofar][HMXNiloofar]
-\definetypescriptprefix[s:mitra]   [Mitra]
-\definetypescriptprefix[f:mitra][HMFMitra]
-\definetypescriptprefix[s:alm][ALM]
-\definetypescriptprefix[f:alm][ALMFixed]
-\definetypescriptprefix[s:sahel][Sahel]
-\definetypescriptprefix[f:sahel][Sahel]
-\definetypescriptprefix[s:vazir][Vazir]
-\definetypescriptprefix[f:vazir][Vazir]
-
-%D Many Persian fonts suffer from bad kerning.  I fix a few issues in the goodies files.
-\definefontfeature[niloofarfix][goodies=niloofar-goodies,extrakerns=yes]
-\definefontfeature[mitrafix]   [goodies=mitra-goodies,extrakerns=yes]
-\definefontfeature[sahelfix]   [default]
-
-%D XS2 fonts can be mapped using the following typescript.
-\starttypescript [serif,sans,define] [niloofar,mitra] [name]
- \startexpanded
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
-                     [\typescriptprefix{f:\typescripttwo}]
-                     [features={flang,arabic,tlig,\typescripttwo fix}]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
-                     [\typescriptprefix{f:\typescripttwo}Bd]  
-                     [features={flang,arabic,tlig,\typescripttwo fix}]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
-                     [\typescriptprefix{f:\typescripttwo}It]  
-                     [features={flang,arabic,tlig,\typescripttwo fix}]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
-                     [\typescriptprefix{f:\typescripttwo}BdIt]
-                     [features={flang,arabic,tlig,\typescripttwo fix}]
- \stopexpanded
-\stoptypescript
-
-%D Fonts created by Saber Rastikerdar can be mapped as follows.
-%% TODO: Why doesn't tlig work here?
-%% TODO: Are the relative sizes correct?
-\starttypescript [serif,sans,define] [sahel,vazir] [name]
-  \resetfontfallback [dejavudefault]
-  \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
-  \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
-  \definefontfallback[dejavudefault][dejavusans] [generalpunctuation] [check=yes,force=no]
- \startexpanded
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
-                     [file:\typescriptprefix{f:\typescripttwo}.ttf]     
-                     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
-                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
-                     [file:\typescriptprefix{f:\typescripttwo}.ttf]     
-                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
-                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
- \stopexpanded
-\stoptypescript
-
-%D The mono font ``ALM Fixed'' has only one shape.
-\starttypescript [mono] [alm] [name]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
-                     [\typescriptprefix{f:\typescripttwo}]
-                     [features=arabic]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
-                     [\typescriptprefix{f:\typescripttwo}]
-                     [features=arabic]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
-                     [\typescriptprefix{f:\typescripttwo}]
-                     [features={arabic,slanted}]
-  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
-                     [\typescriptprefix{f:\typescripttwo}]
-                     [features={arabic,slanted}]
-\stoptypescript
-
-%D After the fonts are mapped to symbolic names, we need to do one more
-%D level of mapping to get Serif/Sans/Mono aliases right.
-\starttypescript [serif,sans,mono] [niloofar,mitra,alm,sahel,vazir] [name]
-  \definefontsynonym [\typescriptprefix{\typescriptone}]
-                     [\typescriptprefix{s:\typescripttwo}Reg]
-  \definefontsynonym [\typescriptprefix{\typescriptone}Bold]
-                     [\typescriptprefix{s:\typescripttwo}Bd]
-  \definefontsynonym [\typescriptprefix{\typescriptone}Italic]
-                     [\typescriptprefix{s:\typescripttwo}It]
-  \definefontsynonym [\typescriptprefix{\typescriptone}BoldItalic]
-                     [\typescriptprefix{s:\typescripttwo}BdIt]
-\stoptypescript
+%D Load definitions for Saber Rastikerdar's fonts
+\usetypescriptfile[rastikerdar]  %% or type-imp-rastikerdar?
+%D Load definitions for XS2 and HM fonts
+\usetypescriptfile[movahedian]  %% or type-imp-movahedian?
+%D Load definitions for Idris Samawi's fonts
+\usetypescriptfile[samawi]  %% or type-imp-samawi?
 
 %D Math is always more complicated.  We first define ``BaseMath''.
 %% TODO: for BaseMath, we'd better use features=math\mathsizesuffix, goodies, etc.?
@@ -151,26 +70,6 @@
 \starttypescript [math] [xits] [name]
   \definefontsynonym [BaseMath]  [file:xits-math.otf] [goodies=xits-math]
   \definefontsynonym [MathRoman] [BaseMath]
-\stoptypescript
-
-%D And then use fallbacks to get the Persian digits right.
-\starttypescript [math] [niloofar] [name]
-  \resetfontfallback [mathdigits]
-  \definefontfallback[mathdigits][HMXNiloofar]  [digitsextendedarabicindic][check=yes,force=yes,offset=digitsnormal]
-  \definefontfallback[mathdigits][HMXNiloofarBd][digitsextendedarabicindic][check=yes,force=yes,offset=digitsbold]
-  %% arabic decimal, thousand separator and percent sign
-  \definefontfallback[mathdigits][HM XNiloofar] [0x066A-0x066C][check=yes,force=no]
-  \definefontsynonym [MathRoman] [BaseMath] [fallbacks=mathdigits]
-\stoptypescript
-
-\starttypescript [math] [sahel] [name]
-  \resetfontfallback [mathdigits]
-  \definefontfallback[mathdigits][Sahel]     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsnormal]
-  \definefontfallback[mathdigits][Sahel-Bold][digitsextendedarabicindic][check=yes,force=yes,offset=digitsbold]
-  \definefontfallback[mathdigits][dejavusans][generalpunctuation][check=yes,force=no]
-  %% arabic decimal, thousand separator and percent sign
-  \definefontfallback[mathdigits][dejavusans][0x66A-0x66C][check=yes,force=no]
-  \definefontsynonym [MathRoman] [BaseMath]  [fallbacks=mathdigits]
 \stoptypescript
 
 %D Finally we define our font family.
