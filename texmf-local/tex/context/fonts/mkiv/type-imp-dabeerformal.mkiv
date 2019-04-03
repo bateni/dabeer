@@ -1,6 +1,6 @@
 %D \module
-%D   [      file=type-imp-dabeer-formal,
-%D        version=0.15,
+%D   [      file=type-imp-dabeerformal,
+%D        version=0.16,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Formal Farsi font,
 %D         author={Mohammad Hossein Bateni},
@@ -31,20 +31,13 @@
 \loadtypescriptfile[samawi]      %% for ALM
 
 %D Finally we define our font family.
-\starttypescript  [farsiformal]
-  \definetypeface [farsiformal][rm] [serif][niloofar] [default]
-  \definetypeface [farsiformal][ss] [sans] [mitra]    [default]
-  \definetypeface [farsiformal][tt] [mono] [alm]      [default]
-  \definetypeface [farsiformal][mm] [math] [modern]   [default]
-  \definetypeface [farsiformal][mm] [math] [niloofar] [default]
+\starttypescript  [dabeerformal]
+  \definetypeface [dabeerformal][rm] [serif][niloofar] [default]
+  \definetypeface [dabeerformal][ss] [sans] [mitra]    [default]
+  \definetypeface [dabeerformal][tt] [mono] [alm]      [default]
+  \definetypeface [dabeerformal][mm] [math] [modern]   [default]
+  \definetypeface [dabeerformal][mm] [math] [niloofar] [default]
 %D The following used to work in place of the above two lines.
 %D But now it leads to incorrect order for loading the two fonts.
-%%  \definetypeface [farsiformal][mm] [math] [modern,niloofar][default]
+%%  \definetypeface [dabeerformal][mm] [math] [modern,niloofar][default]
 \stoptypescript
-
-%D Now it seems like we'd be done with the following command:
-%% \setupbodyfont [farsiformal]
-%D However, if we include it, \usetypescriptfile[dabeer-formal] fails with memory exceeded.
-%D Interestingly things would work with \loadtypescriptfile[dabeer-formal].
-%D Now instead, we need to call the \quotation{setup} command after the \quotation{use} command above.
-
