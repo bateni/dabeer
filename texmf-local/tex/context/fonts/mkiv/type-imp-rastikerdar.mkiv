@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=type-imp-rastikerdar,
-%D        version=0.17,
+%D        version=0.18,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Fonts made by Saber Rastikerdar (https://github.com/rastikerdar),
 %D         author={Mohammad Hossein Bateni},
@@ -75,14 +75,14 @@
 
 %% TODO: Add vazir here, perhaps using \typescriptprefix
 %D After defining BaseMath in dabeer-font, we use fallbacks to get the Persian digits right.
-\starttypescript [math] [sahel] [name]
+\starttypescript [math] [sahel,vazir] [name]
   \resetfontfallback [mathdigits]
-  \definefontfallback[mathdigits][Sahel]
+  \definefontfallback[mathdigits][\typescriptprefix{s:\typescripttwo}]
 		     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsnormal]
-  \definefontfallback[mathdigits][Sahel-Bold]
+  \definefontfallback[mathdigits][\typescriptprefix{s:\typescripttwo}-Bold]
 		     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsbold]
   \definefontfallback[mathdigits][dejavusans][generalpunctuation][check=yes,force=no]
   %% arabic decimal, thousand separator and percent sign
   \definefontfallback[mathdigits][dejavusans][0x66A-0x66C][check=yes,force=no]
-  \definefontsynonym [MathRoman] [BaseMath]  [fallbacks=mathdigits]
+  \definefontsynonym [MathRoman] [BaseMath]  [fallbacks=mathdigits,features=math\mathsizesuffix]
 \stoptypescript

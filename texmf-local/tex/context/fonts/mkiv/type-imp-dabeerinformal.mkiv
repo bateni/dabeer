@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=type-imp-dabeerinformal,
-%D        version=0.17,
+%D        version=0.18,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Informal Farsi font,
 %D         author={Mohammad Hossein Bateni},
@@ -33,7 +33,8 @@
   \definetypeface [dabeerinformal][rm] [serif][sahel]    [default]
   \definetypeface [dabeerinformal][ss] [sans] [vazir]    [default]
   \definetypeface [dabeerinformal][tt] [mono] [vazircode][default]
-  \definetypeface [dabeerinformal][mm] [math] [modern]   [default]
+  %% Other options for base math are: modern, pagella, xits
+  \definetypeface [dabeerinformal][mm] [math] [euler]    [default]
   \definetypeface [dabeerinformal][mm] [math] [sahel]    [default]
 %D The following used to work in place of the above two lines.
 %D But now it leads to incorrect order for loading the two fonts.

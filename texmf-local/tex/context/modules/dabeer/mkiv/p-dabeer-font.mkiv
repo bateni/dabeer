@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer-font,
-%D        version=0.16,
+%D        version=0.18,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=font companion to dabeer module for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -60,8 +60,19 @@
   \definefontsynonym [MathRoman] [BaseMath]
 \stoptypescript
 
+\starttypescript [math] [euler,pagella,xits] [name]
+%% I do not know why the following lines help. Maybe some sort of warm-up?
+  \definefontsynonym [MathRoman]     [LMMathRoman-Regular]
+  \definefontsynonym [MathRomanBold] [LMMathRoman-Bold]
+\stoptypescript
+
 \starttypescript [math] [euler] [name]
-  \definefontsynonym [BaseMath]  [name:euler] [features=math\mathsizesuffix]
+  \definefontsynonym [BaseMath]  [name:euler] [features={math\mathsizesuffix,mathextra}]
+  \definefontsynonym [MathRoman] [BaseMath]
+\stoptypescript
+
+\starttypescript [math] [pagella] [name]
+  \definefontsynonym [BaseMath]  [texgyrepagella-math] [features=math\mathsizesuffix]
   \definefontsynonym [MathRoman] [BaseMath]
 \stoptypescript
 
