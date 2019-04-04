@@ -1,0 +1,41 @@
+%D \module
+%D   [      file=type-imp-dabeerinformal,
+%D        version=0.17,
+%D          title=\CONTEXT\ User Typescript Macros,
+%D       subtitle=Informal Farsi font,
+%D         author={Mohammad Hossein Bateni},
+%D           date=\currentdate,
+%D      copyright={Mohammad Hossein Bateni},
+%D        license=GNU General Public License v2]
+
+% dabeer module for Persian typesetting in ConTeXt
+% Copyright (C) 2016-2019  Mohammad Hossein Bateni
+
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+%D Load definitions for Saber Rastikerdar's fonts
+\loadtypescriptfile[rastikerdar]  %% for Sahel, Vazir and VazirCode
+
+%D Finally we define our font family.
+\starttypescript  [dabeerinformal]
+  \definetypeface [dabeerinformal][rm] [serif][sahel]    [default]
+  \definetypeface [dabeerinformal][ss] [sans] [vazir]    [default]
+  \definetypeface [dabeerinformal][tt] [mono] [vazircode][default]
+  \definetypeface [dabeerinformal][mm] [math] [modern]   [default]
+  \definetypeface [dabeerinformal][mm] [math] [sahel]    [default]
+%D The following used to work in place of the above two lines.
+%D But now it leads to incorrect order for loading the two fonts.
+%%  \definetypeface [dabeerinformal][mm] [math] [modern,sahel][default]
+\stoptypescript

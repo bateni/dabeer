@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=type-imp-rastikerdar,
-%D        version=0.14,
+%D        version=0.17,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Fonts made by Saber Rastikerdar (https://github.com/rastikerdar),
 %D         author={Mohammad Hossein Bateni},
@@ -29,6 +29,8 @@
 \definetypescriptprefix[f:sahel][Sahel]
 \definetypescriptprefix[s:vazir][Vazir]
 \definetypescriptprefix[f:vazir][Vazir]
+\definetypescriptprefix[s:vazircode][VazirCode]
+\definetypescriptprefix[f:vazircode][Vazir-Code]
 
 \definefontfeature[sahelfix]   [default]
 
@@ -36,7 +38,7 @@
 %% TODO: Why doesn't tlig work here?
 %% TODO: Are the relative sizes correct?
 %% TODO: Use different fallbacks for sans and serif
-\starttypescript [serif,sans,define] [sahel,vazir] [name]
+\starttypescript [serif,sans,mono,define] [sahel,vazir,vazircode] [name]
   \resetfontfallback [dejavudefault]
   \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
   \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
@@ -60,7 +62,7 @@
 
 %D After the fonts are mapped to symbolic names, we need to do one more
 %D level of mapping to get Serif/Sans/Mono aliases right.
-\starttypescript [serif,sans,mono] [sahel,vazir] [name]
+\starttypescript [serif,sans,mono] [sahel,vazir,vazircode] [name]
   \definefontsynonym [\typescriptprefix{\typescriptone}]
                      [\typescriptprefix{s:\typescripttwo}Reg]
   \definefontsynonym [\typescriptprefix{\typescriptone}Bold]
@@ -71,6 +73,7 @@
                      [\typescriptprefix{s:\typescripttwo}BdIt]
 \stoptypescript
 
+%% TODO: Add vazir here, perhaps using \typescriptprefix
 %D After defining BaseMath in dabeer-font, we use fallbacks to get the Persian digits right.
 \starttypescript [math] [sahel] [name]
   \resetfontfallback [mathdigits]
