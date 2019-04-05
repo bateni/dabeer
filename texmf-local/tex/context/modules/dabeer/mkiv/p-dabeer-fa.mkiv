@@ -1,0 +1,216 @@
+%D \module
+%D   [      file=p-dabeer-fa,
+%D        version=0.20,
+%D          title=\CONTEXT\ User Module,
+%D       subtitle=dabeer farsi for Persian typesetting,
+%D         author={Mohammad Hossein Bateni},
+%D           date=\currentdate,
+%D      copyright={Mohammad Hossein Bateni},
+%D        license=GNU General Public License v2]
+
+%C dabeer farsi module for Persian typesetting in ConTeXt
+%C Copyright (C) 2016  Mohammad Hossein Bateni
+
+%C This program is free software; you can redistribute it and/or
+%C modify it under the terms of the GNU General Public License
+%C as published by the Free Software Foundation; either version 2
+%C of the License, or (at your option) any later version.
+
+%C This program is distributed in the hope that it will be useful,
+%C but WITHOUT ANY WARRANTY; without even the implied warranty of
+%C MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%C GNU General Public License for more details.
+
+%C You should have received a copy of the GNU General Public License
+%C along with this program; if not, write to the Free Software
+%C Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+\unprotect
+\usemodule[dabeer]
+
+%D The first argument in \type{\FarEqCommand} is the original English
+%D name of the command and the second one is the Persian translation.
+%D
+%D {\bf Warning}: If the English command has not been defined yet,
+%D CONTEXT may define it as \type{\relax}, which suppresses any errors
+%D caused by accidentally using the Farsi version and may cause issues
+%D in (re)defining it later on.
+\define[2]\FaEqCommand{%
+    \setgvalue{#2}{\csname #1\endcsname}
+}
+
+%D Basic definitions.
+\def\dabeer_fa_start{شروع‌} % there is a ZWNJ at the end
+\def\dabeer_fa_stop{پایان‌} % same here.
+\def\dabeer_fa_sub{زیر}    % no ZWNJ here
+\def\dabeer_en_start{start}
+\def\dabeer_en_stop{stop}
+\def\dabeer_en_sub{sub}
+
+%D The basic syntax for \type{FaStartStopCommand} is like that
+%D of \type{\FaEqCommand}.  The first argument is the original English
+%D name and next comes the Persian translation.  We may later add
+%D options.
+\def\FaStartStopCommand%
+    {\dosingleempty\doFaStartStopCommand}
+
+%D The actual logic goes here.  We should parse the options, as well.
+\def\doFaStartStopCommand[#1]#2#3{%
+    \getparameters[dabeer_fa_options_][alone=no,sub=0,#1]%
+    \FaEqCommand{\dabeer_en_start #2}{\dabeer_fa_start #3}%
+    \FaEqCommand{\dabeer_en_stop  #2}{\dabeer_fa_stop  #3}%
+    \doif{\dabeer_fa_options_alone}{yes}{%
+        \FaEqCommand{#2}{#3}%
+    }%
+%D We could recurse here with some care, but I don't want to deal with
+%D any complications.
+    \ifnum\dabeer_fa_options_sub>0\relax
+      \FaEqCommand{\dabeer_en_start\dabeer_en_sub #2}%
+                  {\dabeer_fa_start\dabeer_fa_sub #3}%
+      \FaEqCommand{\dabeer_en_stop\dabeer_en_sub  #2}%
+                  {\dabeer_fa_stop\dabeer_fa_sub  #3}%
+      \doif{\dabeer_fa_options_alone}{yes}{%
+        \FaEqCommand{\dabeer_en_sub #2}{\dabeer_fa_sub #3}%
+      }%
+    \fi%  
+    \ifnum\dabeer_fa_options_sub>1\relax
+      \FaEqCommand{\dabeer_en_start\dabeer_en_sub\dabeer_en_sub #2}%
+                  {\dabeer_fa_start\dabeer_fa_sub\dabeer_fa_sub #3}%
+      \FaEqCommand{\dabeer_en_stop\dabeer_en_sub\dabeer_en_sub  #2}%
+                  {\dabeer_fa_stop\dabeer_fa_sub\dabeer_fa_sub  #3}%
+      \doif{\dabeer_fa_options_alone}{yes}{%
+        \FaEqCommand{\dabeer_en_sub\dabeer_en_sub #2}%
+                    {\dabeer_fa_sub\dabeer_fa_sub #3}%
+      }%
+    \fi%  
+    \ifnum\dabeer_fa_options_sub>2\relax
+      \FaEqCommand{\dabeer_en_start\dabeer_en_sub\dabeer_en_sub\dabeer_en_sub #2}%
+                  {\dabeer_fa_start\dabeer_fa_sub\dabeer_fa_sub\dabeer_fa_sub #3}%
+      \FaEqCommand{\dabeer_en_stop\dabeer_en_sub\dabeer_en_sub\dabeer_en_sub  #2}%
+                  {\dabeer_fa_stop\dabeer_fa_sub\dabeer_fa_sub\dabeer_fa_sub  #3}%
+      \doif{\dabeer_fa_options_alone}{yes}{%
+        \FaEqCommand{\dabeer_en_sub\dabeer_en_sub\dabeer_en_sub #2}%
+                    {\dabeer_fa_sub\dabeer_fa_sub\dabeer_fa_sub #3}%
+      }%
+    \fi%  
+}
+
+%D Now come the actual translations.
+\FaEqCommand{starttext}{شروع‌متن}
+\FaEqCommand{stoptext}{پایان‌متن}
+
+\FaEqCommand{usemodule}{استفاده‌ازپودمان}
+
+%D Font style manipulations.
+\FaEqCommand{bf}{پررنگ}
+\FaEqCommand{it}{ایتالیک}
+\FaEqCommand{bi}{پررنگ‌ایتالیک}
+\FaEqCommand{tfa}{قلم‌آ}
+\FaEqCommand{tfb}{قلم‌ب}
+\FaEqCommand{tfc}{قلم‌پ}
+\FaEqCommand{tfd}{قلم‌ت}
+\FaEqCommand{tfx}{قلم‌ک}
+\FaEqCommand{tfxx}{قلم‌کک}
+\FaEqCommand{bfa}{پررنگ‌آ}
+\FaEqCommand{bfb}{پررنگ‌ب}
+\FaEqCommand{bfc}{پررنگ‌پ}
+\FaEqCommand{bfd}{پررنگت}
+\FaEqCommand{bfx}{پررنگ‌ک}
+\FaEqCommand{bfxx}{پررنگ‌کک}
+
+%D Sectioning.
+\FaStartStopCommand[alone=yes]      {title}{عنوان}
+\FaStartStopCommand[alone=yes]      {chapter}{فصل}
+\FaStartStopCommand[alone=yes,sub=3]{section}{بخش}
+\FaStartStopCommand[alone=yes]      {part}{قسمت}
+\FaStartStopCommand[alone=yes,sub=3]{subject}{موضوع}
+
+%D Itemization
+\FaStartStopCommand[alone=yes]{item}{فقره}
+\FaStartStopCommand           {itemize}{فقرات}
+
+%D Margins
+\FaEqCommand{inmargin}{درحاشیه}
+\FaEqCommand{inleft}  {درحاشیه‌چپ}
+\FaEqCommand{inright} {درحاشیه‌راست}
+
+%D Date/time
+\FaEqCommand{currentdate}{تاریخ‌فعلی}
+\FaEqCommand{date}{تاریخ}
+
+%D Footnotes
+\FaEqCommand{footnote}   {پانوشت}
+\FaEqCommand{LTRfootnote}{پانوشت‌چر}
+\FaEqCommand{RTLfootnote}{پانوشت‌رچ}
+
+%D Referrals
+\FaEqCommand{in}{درون}
+\FaEqCommand{at}{در}
+\FaEqCommand{about}{درباره}
+\FaEqCommand{eqref}{درمعادله}
+
+%D Index
+\FaEqCommand{index}{نمایه}
+\FaEqCommand{seeindex}{نمایه‌راببین}
+
+%D Frames
+\FaEqCommand{framed}{کادر}
+\FaEqCommand{inframed}{درکادر}
+\FaEqCommand{framedtext}{کادرمتن}
+
+%D Spacing
+\FaEqCommand{blank}{خالی}
+\FaEqCommand{hskip}{پرش‌ا}
+\FaEqCommand{vskip}{پرش‌ع}
+
+%D Blocks, alignment
+\FaStartStopCommand{narrower}{باریک‌تر}
+\FaStartStopCommand[alone=yes]{quotation}{نقل‌قول}
+\FaStartStopCommand[alone=yes]{quote}{قول}
+\FaEqCommand{leftaligned} {چپ‌چین}
+\FaEqCommand{midaligned}  {وسط‌چین}
+\FaEqCommand{rightaligned}{راست‌چین}
+
+%D Fonts
+%% TODO
+
+%D Languages
+\FaEqCommand{language}    {زبان}
+\FaEqCommand{mainlanguage}{زبان‌اصلی}
+\FaEqCommand{righttoleft}{چپ‌به‌راست}
+\FaEqCommand{lefttoright}{راست‌به‌چپ}
+
+%D Columns
+\FaStartStopCommand{columns}{ستون‌ها}
+\FaEqCommand       {column} {ستون}
+
+%D Misc
+\FaEqCommand{type}{تایپ}
+\FaEqCommand{unknown}{ناشناس}
+\FaEqCommand{symbol}{نماد}
+\FaEqCommand{strut}{بست}
+\FaEqCommand{input}{ورود}
+\FaEqCommand{aside}{معترضه}  %% or بدل؟
+\FaEqCommand{leavevmode}{خروج‌ازحالت‌ع}
+
+\protect
+
+%% TODO: It's a good idea to have indexing built into the translation
+%% macros, so that we can easily generate a list at the end.
+
+%% TODO: In case the interface language is pe, we should probably do
+%% the translation the other way around.  However, this is not that
+%% simple since we may not want to stick to the same translation as
+%% those of CONTEXT's pe interface.
+
+%% TODO: Introduce translations for start/stop and setup/define
+%% constructs: تنظیم/تعریف؟
+
+%% TODO: Add consistent translations for use, defined, etc.
+
+%% TODO: Maybe we should make the code more efficient by using \let.
+
+%% TODO: Give an error or a warning if the target command is not
+%% defined.  We can at the very least ``undefine'' the accidentally
+%% defined target command.
+
