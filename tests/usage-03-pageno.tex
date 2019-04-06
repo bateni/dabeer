@@ -1,8 +1,47 @@
 \usemodule[dabeer]
+\setupbodyfont[dabeerinformal]
 
 \starttext
 
-\dorecurse{15}{\page \input fa-coin }
+{\bf توضیحات}:
+\startitemize[nowhite]
+\item
+این بار از قلم \type{dabeerinformal} استفاده کرده‌ایم.
+\item
+به شماره صفحه‌ها و بخش‌ها دقت کنید که از جهت راست‌به‌چپ درست نوشته شده باشد.
+\item
+در صفحه پایانی چند فرمول ریاضی از طریق این قلم نوشته شده است.
+\stopitemize
+
+
+\dorecurse{15}{
+\rm
+\section{سریف‌دار}
+\input fa-norooz
+\ss
+\section{بی‌سریف}
+\input fa-norooz
+\tt
+\section{مونوتایپ}
+\input fa-norooz
+\page}
+
+\rm
+\section{ریاضیات}
+
+\startformula
+ax^2 + bx + c = 0 ==> x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+\stopformula
+
+\startformula
+H(n) = \sum_{i=1}^n \frac1i.
+\stopformula
+
+
+\startformula
+\int_{-\infty}^\infty e^{-x^2} = \sqrt \pi.
+\stopformula
+
 
 \stoptext
 

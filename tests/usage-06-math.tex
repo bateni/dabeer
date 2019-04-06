@@ -1,9 +1,5 @@
 \usemodule[dabeer]
-
-%% This is only for debugging and helps us understand better
-%% what CONTEXT is doing with math formulas.  Final document
-%% is supposed to turn the option off.
-\tracemathtrue
+\setupbodyfont[dabeerformal]
 
 \definemathframed[graymath]
 [
@@ -12,7 +8,7 @@
   background=color,
   backgroundcolor=lightgray,
   backgroundoffset=2pt
-  ]
+]
 
 %% Option two looks better for Persian digits.
 %% Beware that automatic translation of Latin digits to Persian
@@ -25,8 +21,12 @@
 \defineenumeration
     [theorem]
     [text=قضیه ,
-     alternative=serried,
-     width=fit,
+%% left,inmargin,hanging,serried sort of work; top doesn't.,
+     alternative=hanging,
+%	 width=line,% no effect with 'serried'
+%	 width=3cm,headstyle={\righttoleft\bf},	 
+	 width=broad,headstyle={\righttoleft\bf},
+%	 width=fit,headstyle={\righttoleft\bf},	 
      numberconversion=persiandecimals,
      distance=0.5em]
 \defineenumeration[titledtheorem][theorem][title=yes]
@@ -42,8 +42,26 @@
    alternative=serried,
    width=fit,
    distance=0.5em,
-   headstyle=italic,
+   headstyle={\righttoleft\it},
    closesymbol=\mathematics{\square}]
+
+%\defineseparatorset[none][][]
+%\defineseparatorset[dash][][--]
+\defineseparatorset[hyphen][][-]
+\setupformulas[
+   numberseparatorset=hyphen,
+   location=right% left is the default
+]
+
+%% \startalign puts the number on the other side (compared
+%% to startformula).  So we use the following to fix it.
+\defineformula[far]
+\setupformula[far][location=left]
+%% no effect
+%\setupsubformulas[location=right]
+%% left, right have no effect;
+%% top/bottom/center remove the individual numbers
+%\setupmathalignment[location=normal]
 
 \starttext
 
@@ -69,6 +87,7 @@
 E = mc^2.
 \stopformula
 
+
 در \CONTEXT\ استفاده از قاب‌ها بسیار ساده است.
 مثلاً قاب موجود در فرمول زیر به‌سادگی نشان می‌دهد که 
  $\log(1+x) = x + O(x^2)$.
@@ -81,21 +100,23 @@ E = mc^2.
 
 در ادامه به یک مثال پیچیده‌تر نگاهی می‌اندازیم.
 
-%% We need to use Persian digits inside \vfrac if we want them.
-%% The conversion is done automatically.
+%% We do not need to use Persian digits inside \vfrac.
+%% The conversion to Persian digits is done automatically.
 \placeformula
  \startformula
  \startalign
   \NC c^2 \EQ a^2 + b^2  \NR
-  \NC c \EQ \left(a^2 + b^2\right)^{\vfrac{۱}{۲}} \NR
+  \NC c \EQ \left(a^2 + b^2\right)^{\vfrac{1}{2}} \NR
   \NC a^2 + b^2 \EQ c^2  \NR
   \NC d^2 \EQ e^2        \NR
  \stopalign
 \stopformula
 
 با استفاده از دستور \type{\mbox} می‌توان در محیط ریاضی از متن فارسی بهره برد.
+جهت نوشته در  \type{\mbox} از چپ به راست است.
+لذا برای نوشتن عبارت فارسی بهتر است دستور \type{\righttoleft} را درون آن جای دهید.
 \startformula
-E = \{ x | \mbox{$x$ زوج است } \}.
+E = \{ x | \mbox{\righttoleft $x$ زوج است} \}.
 \stopformula
 
 یکی از زیباترین روابط ریاضی در ادامه می‌آید.
@@ -109,31 +130,36 @@ e^{i\pi} + 1 = 0.
 صورت کلی برنامه خطی به شکل زیر است.
 
 \placesubformula
-\startformula
+\startfarformula
 \startalign[n=5,align={left,right,left,middle,right}]
 \NC \min   \NC  \sum_i c_i x_i    \NC           \NC \quad \NC \NR[lp:0]
 \NC \mbox{subject to }   \NC  \sum_i a_{ij} x_i \NC \geq b_j \NC \NC \forall j \NR[lp:1][a]
 \NC                      \NC  x_i               \NC \geq 0   \NC \NC \forall i. \NR[lp:2][b]
 \stopalign
-\stopformula
+\stopfarformula
 
 همان طور که از فلسفه \CONTEXT\ برمی‌آید،
 دستور \type{\definemathalignment}
 امکان تعریف عملگری برای حروفچینی برنامه‌های خطی فراهم می‌نماید.
+شایان ذکر است که دستور \type{\startalign} معادل \type{\startmathalignment} می‌باشد.
 
 همان‌طور که انتظار می‌رود امکان بهره‌گیری از شماره‌گزاری وابسته
-برای فرمول‌ها در کانتکست وجود دارد.  اما درحال‌حاضر به‌نظر می‌رسد
+برای فرمول‌ها در کانتکست وجود دارد.  اما در حال حاضر به‌نظر می‌رسد
 که اِعمال تغییرات در جهت و نوع شماره‌گزاری به‌طورکامل پشتیبانی
-نمی‌شود.  به نمونه زیر توجه کنید.
+نمی‌شود.
+لذا برای این‌که شماره‌ها را در یک سمت قرار دهیم، یک \type{farformula} تعریف کردیم
+که کلید \type{location} آن خلاف کلید مربوطه در \type{formula} است.
+آن‌گاه \type{startalign} را درون \type{farformula} قرار دادیم.
+به نمونه زیر توجه کنید.
 \startsubformulas[eq:Rel]
 \placeformula
-\startformula
+\startfarformula
 \startalign
 \NC c^2 \NC= a^2 + b^2  \NR[eq:a]
 \NC a^2 + b^2 \NC = c^2  \NR[eq:b]
 \NC d^2 \NC = e^2        \NR[eq:c]
 \stopalign
-\stopformula
+\stopfarformula
 \stopsubformulas
 
 

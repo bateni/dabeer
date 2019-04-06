@@ -1,5 +1,5 @@
 \usemodule[dabeer]
-
+\setupbodyfont[dabeerformal]
 %% For documentation of itemize keys:
 %% http://wiki.contextgarden.net/Command/setupitemgroup
 
@@ -106,11 +106,25 @@
 \getbuffer[itemlist]
 \stopitemize
 
+این‌جا به طرز عجیبی (همان‌طور که در مستند \type{usage-01} نیز مشکل داشتیم)
+از قلاب اشتباه استفاده می‌شود.  یک راه درمان موضعی‌اش بهره گرفتن از قلاب باز در
+تنظیم محیط شمارشی است:
+
+\startitemize[ابجد,horizontal,four][right=(,stopper=,itemalign=left,distance=1ex]
+\getbuffer[itemlist]
+\getbuffer[itemlistshort]
+\getbuffer[itemlist]
+\stopitemize
+
+
 برای تکمیل کردن این بخش بد نیست ترکیب زیر را نیز به نمایش بگذاریم.
 
 \startitemize[عددی,columns,three][right=-,stopper=,itemalign=left,distance=1ex]
 \getbuffer[itemlistshort]
 \stopitemize
+
+%% TODO: try nested itemizations and alignment.
+%% TODO: define RTL symbols.
 
 \stoptext
 
