@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=type-imp-rastikerdar,
-%D        version=0.18,
+%D        version=0.19,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Fonts made by Saber Rastikerdar (https://github.com/rastikerdar),
 %D         author={Mohammad Hossein Bateni},
@@ -34,16 +34,20 @@
 
 \definefontfeature[sahelfix]   [default]
 
+%D We define manual boldening because the font lacks that.
+%D We could use the default 'boldened' feature, but the following gives us more freedom.
+%D Refer to Section 11 of onandon.pdf manual for more information.
+\definefontfeature[rastikerdar-bold][effect={width=0.4}]
+
 %D Fonts created by Saber Rastikerdar can be mapped as follows.
 %% TODO: Why doesn't tlig work here?
 %% Perhaps we need to redefine tlig and trep as in 'tex/context/base/mkiv/font-imp-tex.lua'.
 %% TODO: Are the relative sizes correct?
 %% TODO: Use different fallbacks for sans, serif and mono.
 %% TODO: What other fonts to add?
-%% TODO: VazirCode needs manual slanted and bold shapes.
 %% TODO: I really prefer the "unfilled circle" shape of digit zero in Vazir over
 %% what we currently have in Sahel.  I might add a feature or a "fallback" to replace this.
-\starttypescript [serif,sans,mono,define] [sahel,vazir,vazircode] [name]
+\starttypescript [serif,sans,mono,define] [sahel,vazir] [name]
   \resetfontfallback [dejavudefault]
   \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
   \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
@@ -64,6 +68,31 @@
  \stopexpanded
 \stoptypescript
 
+%D VazirCode has only one shape, so create bold and slanted manually.
+\starttypescript [serif,sans,mono,define] [vazircode] [name]
+  \resetfontfallback [monofall]
+  \definefontfallback[monofall][dejavusansmono] [basiclatin]         [check=yes,force=no]
+  \definefontfallback[monofall][dejavusansmono] [latinsupplement]    [check=yes,force=no]
+  \definefontfallback[monofall][dejavusansmono] [generalpunctuation] [check=yes,force=no]
+ \startexpanded
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [file:\typescriptprefix{f:\typescripttwo}.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix},
+		      fallbacks=monofall]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [file:\typescriptprefix{f:\typescripttwo}.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix,rastikerdar-bold},
+		      fallbacks=monofall]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [file:\typescriptprefix{f:\typescripttwo}.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},
+		      fallbacks=monofall]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [file:\typescriptprefix{f:\typescripttwo}.ttf]
+                     [features={dlang,arabic,tlig,\typescripttwo fix,rastikerdar-bold,slanted},
+		      fallbacks=monofall]
+ \stopexpanded
+\stoptypescript
 
 %D After the fonts are mapped to symbolic names, we need to do one more
 %D level of mapping to get Serif/Sans/Mono aliases right.

@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=type-imp-samawi,
-%D        version=0.14,
+%D        version=0.19,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Fonts made by Idris Samawi,
 %D         author={Mohammad Hossein Bateni},
@@ -30,21 +30,26 @@
 \definetypescriptprefix[s:alm][ALM]
 \definetypescriptprefix[f:alm][ALMFixed]
 
+%D We define manual boldening because the font lacks that.
+%D We could use the default 'boldened' feature, but the following gives us more freedom.
+%D Refer to Section 11 of onandon.pdf manual for more information.
+%D Notice that these capabilities were added to ConTeXt in mid 2018.
+\definefontfeature[samawi-bold][effect={width=0.4}]
+
 %D The mono font \quotation{ALM Fixed} has only one shape.
-%% TODO: Add manual bold shapes
 \starttypescript [mono] [alm] [name]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
                      [\typescriptprefix{f:\typescripttwo}]
                      [features=arabic]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
                      [\typescriptprefix{f:\typescripttwo}]
-                     [features=arabic]
+                     [features={arabic,samawi-bold}]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
                      [\typescriptprefix{f:\typescripttwo}]
                      [features={arabic,slanted}]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
                      [\typescriptprefix{f:\typescripttwo}]
-                     [features={arabic,slanted}]
+                     [features={arabic,slanted,samawi-bold}]
 \stoptypescript
 
 %D After the fonts are mapped to symbolic names, we need to do one more
