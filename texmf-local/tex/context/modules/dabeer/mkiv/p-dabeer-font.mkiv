@@ -48,6 +48,8 @@
 %D nor oblique look good in Persian text.
 
 %D We start with basic general-purpose features.
+%% TODO: We might want to re-define tlig and trep to revert to good old TeX's behavior.
+%% TODO: At some point, we'd better add support for some sort of Kashida justification.
 \definefontfeature[tlig][tlig=yes]  % for en- and em-dashes
 \definefontfeature[slanted][slant=.2]  % for ad-hoc italics
 \definefontfeature[dlang][language=dflt]
@@ -60,6 +62,7 @@
   \definefontsynonym [MathRoman] [BaseMath]
 \stoptypescript
 
+%% TODO: add other options such as Cambria, Bonum, Asana and "Informal".
 \starttypescript [math] [euler,pagella,xits] [name]
 %% I do not know why the following lines help. Maybe some sort of warm-up?
   \definefontsynonym [MathRoman]     [LMMathRoman-Regular]
