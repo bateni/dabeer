@@ -3,9 +3,9 @@ CONTEXT macros for Persian
 
 These are a collection of macros that I use to typeset RTL Persian texts using CONTEXT.  `dabeer` means a _scribe_ in Persian.
 
-*Warning*: Since many RTL/Persian issues are fixed and features are added in the beta, I recommend trying a recent beta and not rely on stable version in the standard TeX distributions.  The code has been tested on CONTEXT beta version 2016.08.21 16:29 with LuaTeX version 0.98.1.  See the instructions for getting a recent [Standalone copy](http://wiki.contextgarden.net/ConTeXt_Standalone).
+*Warning*: Since many RTL/Persian issues are fixed and features are added in the beta, I recommend trying a recent beta and not rely on stable version in the standard TeX distributions.  The code has been tested on CONTEXT beta version 2019.04.04 13:31 with LuaTeX version 1.10.0.  See the instructions for getting a recent [Standalone copy](http://wiki.contextgarden.net/ConTeXt_Standalone).
 
-*Installation*: Copy the contents of `texmf-local` directory to a directory of the same name within the context distribution and then run `context --generate` to update the file list cache.  The install.sh script is an example script doing this.
+*Installation*: Copy the contents of `texmf-local` directory to a directory of the same name within the context distribution and then run `context --generate` to update the file list cache.  The install.sh script is an example script doing this.  An alternative method is to copy the *contents* `texmf-local` directory inside user's `texmf` directory.
 
 ## Package structure
 ### tests/
