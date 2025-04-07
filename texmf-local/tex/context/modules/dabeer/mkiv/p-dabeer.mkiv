@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer,
-%D        version=0.41,
+%D        version=0.42,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=dabeer for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -9,7 +9,7 @@
 %D        license=GNU General Public License v2]
 
 % dabeer module for Persian typesetting in ConTeXt
-% Copyright (C) 2015-2019  Mohammad Hossein Bateni
+% Copyright (C) 2015-2025  Mohammad Hossein Bateni
 
 % This program is free software; you can redistribute it and/or
 % modify it under the terms of the GNU General Public License
@@ -25,9 +25,9 @@
 % along with this program; if not, write to the Free Software
 % Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-\setgvalue{DabeerVersion}{0.41}
+\setgvalue{DabeerVersion}{0.42}
 %% TODO: add automatic conversion from Latin to Persian numbers in Lua.
-\setgvalue{DabeerVersionFa}{\LTR{۰٫۴۱}}
+\setgvalue{DabeerVersionFa}{\LTR{۰٫۴۲}}
 \writestatus{dabeer}{Loading module version \DabeerVersion}
 
 %D It is sometimes more convenient to use Persian percent sign for commenting.
@@ -38,8 +38,9 @@
 %D Set up the default directions.
 
 %D \type{method=default} is not recommended at all.  \type{method=one}
-%D and \type{method=two} are both good.
-\setupdirections[bidi=global,method=one]
+%D and \type{method=two} are better. We use \type{method=unicode} though,
+%D which may be slower, but aligns better with the "standard".
+\setupdirections[bidi=global,method=unicode]
 \setupalign[r2l]
 
 %D Convenience macros for text direction.  These give \type{\LTR} and
@@ -133,6 +134,7 @@
 %D \stopitemize
 \setuphead[part,chapter,section]
           [conversion=LTRpersiandecimals,numberstyle=\righttoleft]
+\setuplist[numberstyle=\righttoleft]
 
 \defineseparatorset[dashsep][-,-,-,-]
 % TODO: is this sufficient?

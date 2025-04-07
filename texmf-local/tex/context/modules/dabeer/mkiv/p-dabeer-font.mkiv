@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=p-dabeer-font,
-%D        version=0.18,
+%D        version=0.19,
 %D          title=\CONTEXT\ User Module,
 %D       subtitle=font companion to dabeer module for Persian typesetting,
 %D         author={Mohammad Hossein Bateni},
@@ -9,7 +9,7 @@
 %D        license=GNU General Public License v2]
 
 % dabeer module for Persian typesetting in ConTeXt
-% Copyright (C) 2016-2019  Mohammad Hossein Bateni
+% Copyright (C) 2016-2025  Mohammad Hossein Bateni
 
 % This program is free software; you can redistribute it and/or
 % modify it under the terms of the GNU General Public License
@@ -55,34 +55,9 @@
 \definefontfeature[dlang][language=dflt]
 \definefontfeature[flang][language=far]
 
-%D Math is always more complicated.  We first define \quotation{BaseMath}.
-%% TODO: for BaseMath, we'd better use features=math\mathsizesuffix, goodies, etc.?
-\starttypescript [math] [modern] [name]
-  \definefontsynonym [BaseMath]  [name:modern] [features=math\mathsizesuffix]
-  \definefontsynonym [MathRoman] [BaseMath]
-\stoptypescript
-
-%% TODO: add other options such as Cambria, Bonum, Asana and "Informal".
-\starttypescript [math] [euler,pagella,xits] [name]
-%% I do not know why the following lines help. Maybe some sort of warm-up?
-  \definefontsynonym [MathRoman]     [LMMathRoman-Regular]
-  \definefontsynonym [MathRomanBold] [LMMathRoman-Bold]
-\stoptypescript
-
-\starttypescript [math] [euler] [name]
-  \definefontsynonym [BaseMath]  [name:euler] [features={math\mathsizesuffix,mathextra}]
-  \definefontsynonym [MathRoman] [BaseMath]
-\stoptypescript
-
-\starttypescript [math] [pagella] [name]
-  \definefontsynonym [BaseMath]  [texgyrepagella-math] [features=math\mathsizesuffix]
-  \definefontsynonym [MathRoman] [BaseMath]
-\stoptypescript
-
-\starttypescript [math] [xits] [name]
-  \definefontsynonym [BaseMath]  [file:xits-math.otf] [goodies=xits-math]
-  \definefontsynonym [MathRoman] [BaseMath]
-\stoptypescript
+%D Math is always more complicated.  We work this out via a mechanism consisting
+%D of a base math font and forced fallback for Indic digits.
+\loadtypescriptfile[mathfonts]
 
 \definebodyfontenvironment[default][em=italic]
 

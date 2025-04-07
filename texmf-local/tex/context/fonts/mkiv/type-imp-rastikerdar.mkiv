@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=type-imp-rastikerdar,
-%D        version=0.19,
+%D        version=0.20,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Fonts made by Saber Rastikerdar (https://github.com/rastikerdar),
 %D         author={Mohammad Hossein Bateni},
@@ -9,7 +9,7 @@
 %D        license=GNU General Public License v2]
 
 % dabeer module for Persian typesetting in ConTeXt
-% Copyright (C) 2016-2019  Mohammad Hossein Bateni
+% Copyright (C) 2016-2025  Mohammad Hossein Bateni
 
 % This program is free software; you can redistribute it and/or
 % modify it under the terms of the GNU General Public License
@@ -28,26 +28,28 @@
 \definetypescriptprefix[s:sahel][Sahel]
 \definetypescriptprefix[f:sahel][Sahel]
 \definetypescriptprefix[s:vazir][Vazir]
-\definetypescriptprefix[f:vazir][Vazir]
+\definetypescriptprefix[f:vazir][Vazirmatn-RD]
 \definetypescriptprefix[s:vazircode][VazirCode]
 \definetypescriptprefix[f:vazircode][Vazir-Code]
 
 \definefontfeature[sahelfix]   [default]
+%\definefontfeature[vazirfix]   [default]
 
 %D We define manual boldening because the font lacks that.
 %D We could use the default 'boldened' feature, but the following gives us more freedom.
 %D Refer to Section 11 of onandon.pdf manual for more information.
 \definefontfeature[rastikerdar-bold][effect={width=0.4}]
+\definefontfeature[texlig]          [tquo=yes,tlig=yes,trep=yes]
 
 %D Fonts created by Saber Rastikerdar can be mapped as follows.
 %% TODO: Why doesn't tlig work here?
-%% Perhaps we need to redefine tlig and trep as in 'tex/context/base/mkiv/font-imp-tex.lua'.
+%% We redefine it as texlig and trep as in 'tex/context/base/mkiv/font-imp-tex.lua'.
 %% TODO: Are the relative sizes correct?
 %% TODO: Use different fallbacks for sans, serif and mono.
 %% TODO: What other fonts to add?
 %% TODO: I really prefer the "unfilled circle" shape of digit zero in Vazir over
 %% what we currently have in Sahel.  I might add a feature or a "fallback" to replace this.
-\starttypescript [serif,sans,mono,define] [sahel,vazir] [name]
+\starttypescript [serif,sans,mono,define] [sahel] [name]
   \resetfontfallback [dejavudefault]
   \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
   \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
@@ -55,16 +57,49 @@
  \startexpanded
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
                      [file:\typescriptprefix{f:\typescripttwo}.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
+                     [features={dlang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
+%  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+%                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+%                     [features={dlang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
                      [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix},fallbacks=dejavudefault]
+                     [features={dlang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
                      [file:\typescriptprefix{f:\typescripttwo}.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+%  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+%                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+%                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
                      [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+ \stopexpanded
+\stoptypescript
+
+\starttypescript [serif,sans,mono,define] [vazir] [name]
+  \resetfontfallback [dejavudefault]
+  \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
+  \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
+  \definefontfallback[dejavudefault][dejavusans] [generalpunctuation] [check=yes,force=no]
+ \startexpanded
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+                     [features={dlang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
+%  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+%                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+%                     [features={dlang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={dlang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+%  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+%                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+%                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
  \stopexpanded
 \stoptypescript
 
@@ -77,19 +112,19 @@
  \startexpanded
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
                      [file:\typescriptprefix{f:\typescripttwo}.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix},
+                     [features={dlang,arabic,texlig,\typescripttwo fix},
 		      fallbacks=monofall]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
                      [file:\typescriptprefix{f:\typescripttwo}.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix,rastikerdar-bold},
+                     [features={dlang,arabic,texlig,\typescripttwo fix,rastikerdar-bold},
 		      fallbacks=monofall]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
                      [file:\typescriptprefix{f:\typescripttwo}.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix,slanted},
+                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},
 		      fallbacks=monofall]
   \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
                      [file:\typescriptprefix{f:\typescripttwo}.ttf]
-                     [features={dlang,arabic,tlig,\typescripttwo fix,rastikerdar-bold,slanted},
+                     [features={dlang,arabic,texlig,\typescripttwo fix,rastikerdar-bold,slanted},
 		      fallbacks=monofall]
  \stopexpanded
 \stoptypescript
@@ -111,11 +146,13 @@
 \starttypescript [math] [sahel,vazir] [name]
   \resetfontfallback [mathdigits]
   \definefontfallback[mathdigits][\typescriptprefix{s:\typescripttwo}]
-		     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsnormal]
-  \definefontfallback[mathdigits][\typescriptprefix{s:\typescripttwo}-Bold]
-		     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsbold]
-  \definefontfallback[mathdigits][dejavusans][generalpunctuation][check=yes,force=no]
+		     [digitsextendedarabicindic][check=no,force=yes,offset=digitsnormal,target=digitsextendedarabicindic]
+  \definefontfallback[mathdigits][\typescriptprefix{s:\typescripttwo}-Bold.ttf]
+		     [digitsextendedarabicindic][check=no,force=yes,offset=digitsbold,target=digitsextendedarabicindic]
+%  \definefontfallback[mathdigits][\typescriptprefix{s:\typescripttwo}-Bold]
+%		     [digitsextendedarabicindic][check=yes,force=yes,offset=digitsbold]
+  \definefontfallback[mathdigits][dejavusans][generalpunctuation][check=yes,force=no,target=generalpunctuation]
   %% arabic decimal, thousand separator and percent sign
-  \definefontfallback[mathdigits][dejavusans][0x66A-0x66C][check=yes,force=no]
+  \definefontfallback[mathdigits][dejavusans][0x66A-0x66C][check=yes,force=no,target=0x66A]
   \definefontsynonym [MathRoman] [BaseMath]  [fallbacks=mathdigits,features=math\mathsizesuffix]
 \stoptypescript

@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=type-imp-dabeerinformal,
-%D        version=0.18,
+%D        version=0.20,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Informal Farsi font,
 %D         author={Mohammad Hossein Bateni},
@@ -9,7 +9,7 @@
 %D        license=GNU General Public License v2]
 
 % dabeer module for Persian typesetting in ConTeXt
-% Copyright (C) 2016-2019  Mohammad Hossein Bateni
+% Copyright (C) 2016-2025  Mohammad Hossein Bateni
 
 % This program is free software; you can redistribute it and/or
 % modify it under the terms of the GNU General Public License
@@ -30,13 +30,8 @@
 
 %D Finally we define our font family.
 \starttypescript  [dabeerinformal]
-  \definetypeface [dabeerinformal][rm] [serif][sahel]    [default]
-  \definetypeface [dabeerinformal][ss] [sans] [vazir]    [default]
-  \definetypeface [dabeerinformal][tt] [mono] [vazircode][default]
-  %% Other options for base math are: modern, pagella, xits
-  \definetypeface [dabeerinformal][mm] [math] [euler]    [default]
-  \definetypeface [dabeerinformal][mm] [math] [sahel]    [default]
-%D The following used to work in place of the above two lines.
-%D But now it leads to incorrect order for loading the two fonts.
-%%  \definetypeface [dabeerinformal][mm] [math] [modern,sahel][default]
+  \definetypeface [dabeerinformal][rm] [serif][sahel]                 [default]
+  \definetypeface [dabeerinformal][ss] [sans] [vazir]                 [default]
+  \definetypeface [dabeerinformal][tt] [mono] [vazircode]             [default]
+  \definetypeface [dabeerinformal][mm] [math] [fall:sahel,main:euler] [default]
 \stoptypescript

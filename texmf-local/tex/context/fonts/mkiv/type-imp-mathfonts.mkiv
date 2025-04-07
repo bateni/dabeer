@@ -1,0 +1,210 @@
+%D \module
+%D   [      file=type-imp-mathfonts,
+%D        version=0.05,
+%D          title=\CONTEXT\ User Typescript Macros,
+%D       subtitle=Fixing Farsi math fallbacks,
+%D         author={Mohammad Hossein Bateni},
+%D           date=\currentdate,
+%D      copyright={Mohammad Hossein Bateni},
+%D        license=GNU General Public License v2]
+
+% dabeer module for Persian typesetting in ConTeXt
+% Copyright (C) 2025  Mohammad Hossein Bateni
+
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+%% todo: need separate bold fallback to replace arabic decimal separator
+% fallbacks={mathdig,mathdib} does not work.
+% the problem is that math font uses bold codepoint from non-bold font MathRoman.
+% does \digits used bold or simply replaces?
+%% also {Math,mathdig} does not work.
+
+%D To use a math font with Farsi digits fallback, we need to define two pieces:
+%D a fallback using the Farsi font, and a version of the math font using that fallback.
+%D For some technical reason, we cannot use the available typescript definitions,
+%D and load the fallbacks on top. In fact, we've had no luck with two fallbacks defined
+%D at the same time.
+
+%D Fallback with DejaVu Mono (the only ConTeXt font supporting Arabic code page).
+\starttypescript [math] [fall:dejavu] [name]
+\definefontfallback [mathdig] [dejavusansmono]     [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback [mathdig] [dejavusansmonobold] [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback [mathdig] [dejavusansmono]     [arabic]                    [check=yes,force=yes]
+%\definefontfallback [mathdib] [dejavusansmonobold] [arabic]                    [check=yes,force=yes]
+\stoptypescript
+
+%D With the last fallback definition, we can also use Arabic/Farsi decimal separator which
+%D is missing in many fonts. We then use the command \type{\digits} to convert the English
+%D decimal separator to the Arabic one. With the currnet definitions above, we get the
+%D non-bold separator in replacement even if the math is using the bold face. To fix this,
+%D one has to define two fallbacks for regular and bold, since we could not get the combined
+%D fallbacks to work properly.
+
+%D Fallback with font Vazir:
+\starttypescript [math] [fall:vazir] [name]
+\definefontfallback [mathdig] [vazirregular] [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback [mathdig] [vazirbold]    [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback [mathdig] [vazirregular] [arabic]                    [check=yes,force=yes]
+\stoptypescript
+
+%D Fallback with font Sahel:
+\starttypescript [math] [fall:sahel] [name]
+\definefontfallback [mathdig] [sahel]     [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback [mathdig] [sahelbold] [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback [mathdig] [sahel]     [arabic]                    [check=yes,force=yes]
+\stoptypescript
+
+%D Fallback with font Mikhak, which misses the Arabic decimal separator:
+\starttypescript [math] [fall:mikhak] [name]
+\definefontfallback [mathdig] [Mikhak-Regular.ttf] [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback [mathdig] [Mikhak-Bold.ttf]    [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback [mathdig] [Mikhak-Regular.ttf] [arabic]                    [check=yes,force=yes]
+\definefontfallback [mathdig] [vazirregular]       [arabic]                    [check=yes,force=yes]
+\stoptypescript
+
+%D Fallback with font Estedad, which misses the Arabic decimal separator:
+\starttypescript [math] [fall:estedad] [name]
+\definefontfallback [mathdig] [estedadregular] [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback [mathdig] [estedadbold]    [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback [mathdig] [estedadregular] [arabic]                    [check=yes,force=yes]
+\definefontfallback [mathdig] [vazirregular]   [arabic]                    [check=yes,force=yes]
+\stoptypescript
+
+%D Fallback with font Niloofar:
+\starttypescript [math] [fall:niloofar] [name]
+\definefontfallback [mathdig] [hmxniloofar]   [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback [mathdig] [hmxniloofarbd] [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback [mathdig] [hmxniloofar]   [arabic]                    [check=yes,force=yes]
+\stoptypescript
+
+%D Fallback with font Roya:
+\starttypescript [math] [fall:roya] [name]
+\definefontfallback [mathdig] [hmxroya]     [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback [mathdig] [hmxroyabd] [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback [mathdig] [hmxroya]     [arabic]                    [check=yes,force=yes]
+\stoptypescript
+
+%D Fallback with font Ziba:
+\starttypescript [math] [fall:ziba] [name]
+\definefontfallback [mathdig] [hmxziba]   [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsnormal]
+\definefontfallback [mathdig] [hmxzibabd] [digitsextendedarabicindic] [check=yes,force=yes,offset=digitsbold]
+\definefontfallback [mathdig] [hmxziba]   [arabic]                    [check=yes,force=yes]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of DejaVu. It's important to
+%D include the \type{fallback=mathdif} option.
+\starttypescript [math] [main:dejavu] [name]
+  \definefontsynonym[MathRoman]    [file:texgyredejavu-math][features={math\mathsizesuffix,mathextra},goodies=dejavu-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:texgyredejavu-math][features={math\mathsizesuffix,dejavu-math-bold,mathextra},goodies=dejavu-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of Latin Modern.
+\starttypescript [math] [main:modern] [name]
+  \definefontsynonym[MathRoman]    [file:latinmodern-math][features={math\mathsizesuffix,lm:mathextra,lm-math},goodies=modern-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:latinmodern-math][features={math\mathsizesuffix,lm:mathextra,lm-math-bold,lm-math},goodies=modern-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of Euler. We usually use the
+%D bold \quotation{characters} in the non-bold math font, hence it may be fine to only
+%D define \type{MathRoman}.
+\starttypescript [math] [main:euler] [name]
+  \definefontsynonym[MathRoman]    [file:euler-math][features={math\mathsizesuffix,mathextra},goodies=euler-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of STIX Two.
+\starttypescript [math] [main:stix] [name]
+  \definefontsynonym[MathRoman]    [file:stixtwomath-regular][features={math\mathsizesuffix,stixtwomath,stixtwo:mathextra,mathextra},goodies=stixtwo-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:stixtwomath-regular][features={math\mathsizesuffix,stix-math-bold,stixtwomath,stixtwo:mathextra,mathextra},goodies=stixtwo-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of Libertinus.
+\starttypescript [math] [main:libertinus] [name]
+  \definefontsynonym[MathRoman]    [file:libertinus-math-regular][features={math\mathsizesuffix,libertinus:mathextra,mathextra},goodies=libertinus-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:libertinus-math-regular][features={math\mathsizesuffix,libertinus-math-bold,libertinus:mathextra,mathextra},goodies=libertinus-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of XCharter.
+\starttypescript [math] [main:charter] [name]
+  \definefontsynonym[MathRoman]     [file:XCharter-Math][features={math\mathsizesuffix,xcharter:mathextra,mathextra},goodies=xcharter-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:XCharter-Math][features={math\mathsizesuffix,xcharter-math-bold,xcharter:mathextra,mathextra},goodies=xcharter-math,fallbacks=mathdig]
+\stoptypescript
+
+%% goodies file not found
+% \starttypescript [math] [main:plex] [name]
+%   \definefontsynonym[MathRoman]     [file:IBMPlexMath-Regular][features={math\mathsizesuffix,plex:mathextra,mathextra},goodies=plex-math,fallbacks=mathdig]
+%   \definefontsynonym[MathRomanBold][file:IBMPlexMath-Regular][features={math\mathsizesuffix,plex-math-bold,plex:mathextra,mathextra},goodies=plex-math,fallbacks=mathdig]
+% \stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of KP Fonts.
+\starttypescript [math][main:kpfonts][name]
+  \definefontsynonym[MathRoman]    [file:KpMath-Regular][features={math\mathsizesuffix,kpfonts:mathextra,mathextra},goodies=kpfonts-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:KpMath-Bold][features={math\mathsizesuffix,kpfonts:mathextra,mathextra},goodies=kpfonts-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of EB Garamond.
+\starttypescript [math][main:garamond][name]
+  \definefontsynonym[MathRoman]    [file:garamond-math][features={math\mathsizesuffix,ebgaramond:mathextra,mathextra},goodies=ebgaramond-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:garamond-math][features={math\mathsizesuffix,ebgaramond-math-bold,ebgaramond:mathextra,mathextra},goodies=ebgaramond-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of Concrete.
+\starttypescript [math][main:concrete][name]
+  \definefontsynonym[MathRoman]    [file:Concrete-Math][features={math\mathsizesuffix,concrete:mathextra,mathextra},goodies=concrete-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:Concrete-Math][features={math\mathsizesuffix,concrete-math-bold,concrete:mathextra,mathextra},goodies=concrete-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of Erewhon.
+\starttypescript [math][main:erewhon][name]
+  \definefontsynonym[MathRoman]    [file:Erewhon-Math][features={math\mathsizesuffix,erewhon:mathextra,mathextra},goodies=erewhon-math,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:Erewhon-Math][features={math\mathsizesuffix,erewhon-math-bold,erewhon:mathextra,mathextra},goodies=erewhon-math,fallbacks=mathdig]
+\stoptypescript
+
+%D Here comes the definition for \quotation{base} math font of Pennstander. This one
+%D is tricky because the goodies file needs to be updated for fallback to work. It
+%D seems that one should include an empty fallbacks block in the tweaks section.
+\starttypescript [math][main:penn][name]
+  % Regular, Bold
+  % Light, SemiBold
+  % Thin, Regular
+  \definefontsynonym[MathRoman]    [file:PennstanderMath-Thin]   [features={math\mathsizesuffix,mathextra},goodies=pennstander-light-mod,fallbacks=mathdig]
+  \definefontsynonym[MathRomanBold][file:PennstanderMath-Regular][features={math\mathsizesuffix,mathextra},goodies=pennstander-light-mod,fallbacks=mathdig]
+\stoptypescript
+
+%D Here are some usage example.
+%D
+%D \starttypescript  [myfont]
+%D \definetypeface [\typescriptone][rm] [serif][sahel]    [default]
+%D \definetypeface [\typescriptone][ss] [sans] [vazir]    [default]
+%D \definetypeface [\typescriptone][tt] [mono] [vazircode][default]
+%D %\definetypeface [\typescriptone][mm] [math] [modern]    [default]
+%D %\definetypeface [\typescriptone][mm] [math] [dejavu]    [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:dejavu,main:dejavu]     [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:vazir,main:modern]      [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:sahel,main:modern]      [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:mikhak,main:euler]      [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:estedad,main:euler]     [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:niloofar,main:stix]     [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:roya,main:libertinus]   [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:roya,main:charter]      [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:roya,main:plex]         [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:roya,main:garamond]     [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:niloofar,main:erewhon]  [default]
+%D %\definetypeface [\typescriptone][mm] [math] [fall:niloofar,main:concrete] [default]
+%D %% Ziba/Kamran/Koodak + Pennstander
+%D  \definetypeface [\typescriptone][mm] [math] [fall:ziba,main:penn] [default]
+%D \stoptypescript
+%D
+%D \setupbodyfont[myfont,20pt]
+%D \starttext ... \stoptext

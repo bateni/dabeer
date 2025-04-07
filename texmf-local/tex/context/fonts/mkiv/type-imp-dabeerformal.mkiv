@@ -1,6 +1,6 @@
 %D \module
 %D   [      file=type-imp-dabeerformal,
-%D        version=0.16,
+%D        version=0.18,
 %D          title=\CONTEXT\ User Typescript Macros,
 %D       subtitle=Formal Farsi font,
 %D         author={Mohammad Hossein Bateni},
@@ -9,7 +9,7 @@
 %D        license=GNU General Public License v2]
 
 % dabeer module for Persian typesetting in ConTeXt
-% Copyright (C) 2016-2019  Mohammad Hossein Bateni
+% Copyright (C) 2016-2025  Mohammad Hossein Bateni
 
 % This program is free software; you can redistribute it and/or
 % modify it under the terms of the GNU General Public License
@@ -29,18 +29,15 @@
 \loadtypescriptfile[movahedian]  %% for Niloofar and Mitra
 %D Load definitions for Idris Samawi's fonts
 \loadtypescriptfile[samawi]      %% for ALM
-
+%D Load definitions for Idris Samawi's fonts
+\loadtypescriptfile[mathfonts]   %% for Math fonts
+\loadtypescriptfile[rastikerdar]
 %D Finally we define our font family.
 \starttypescript  [dabeerformal]
-  \definetypeface [dabeerformal][rm] [serif][niloofar] [default]
-  \definetypeface [dabeerformal][ss] [sans] [mitra]    [default]
-  \definetypeface [dabeerformal][tt] [mono] [alm]      [default]
-  \definetypeface [dabeerformal][mm] [math] [modern]   [default]
-  \definetypeface [dabeerformal][mm] [math] [niloofar] [default]
-%D The following used to work in place of the above two lines.
-%D But now it leads to incorrect order for loading the two fonts.
-%%  \definetypeface [dabeerformal][mm] [math] [modern,niloofar][default]
-
+  \definetypeface [dabeerformal][rm] [serif][niloofar]                  [default]
+  \definetypeface [dabeerformal][ss] [sans] [mitra]                     [default]
+  \definetypeface [dabeerformal][tt] [mono] [alm]                       [default]
+  \definetypeface [dabeerformal][mm] [math] [fall:niloofar,main:modern] [default]
 %% TODO: We might need to increase interlinespace slightly.
 %% TODO: The height of footnote marker in text might be too low.
 \stoptypescript

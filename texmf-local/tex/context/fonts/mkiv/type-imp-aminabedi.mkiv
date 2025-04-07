@@ -1,0 +1,124 @@
+%D \module
+%D   [      file=type-imp-aminabedi,
+%D        version=0.05,
+%D          title=\CONTEXT\ User Typescript Macros,
+%D       subtitle=Fonts made by Amin Abedi (https://github.com/aminabedi68),
+%D         author={Mohammad Hossein Bateni},
+%D           date=\currentdate,
+%D      copyright={Mohammad Hossein Bateni},
+%D        license=GNU General Public License v2]
+
+% dabeer module for Persian typesetting in ConTeXt
+% Copyright (C) 2025  Mohammad Hossein Bateni
+
+% This program is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License
+% as published by the Free Software Foundation; either version 2
+% of the License, or (at your option) any later version.
+
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with this program; if not, write to the Free Software
+% Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+\definetypescriptprefix[s:estedad][Estedad]
+\definetypescriptprefix[f:estedad][Estedad]
+\definetypescriptprefix[s:mikhak][Mikhak]
+\definetypescriptprefix[f:mikhak][Mikhak]
+\definetypescriptprefix[s:azarmehr][Azarmehr]
+\definetypescriptprefix[f:azarmehr][AzarMehrMonospacedSans]
+
+%D We define manual texlig because tlig doesn't work for some reason.
+%\definefontfeature[texlig][tlig=yes]  % trep, tquo (order may matter: tquo,tlig,trep or reverse?)
+\definefontfeature[texlig][tquo=yes,tlig=yes,trep=yes]
+
+%D Fonts created by Amin Abedi can be mapped as follows.
+%% TODO: Are the relative sizes correct?
+%% TODO: Use different fallbacks for sans, serif and mono.
+\starttypescript [serif,sans,mono,define] [estedad] [name]
+  \resetfontfallback [dejavudefault]
+  \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
+  \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
+  \definefontfallback[dejavudefault][dejavusans] [generalpunctuation] [check=yes,force=no]
+ \startexpanded
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+                     [features={dlang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={dlang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={dlang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+ \stopexpanded
+\stoptypescript
+
+\starttypescript [serif,sans,mono,define] [mikhak] [name]
+  %% TODO: figure out why the generalpunctuation fallback does not fix the em-dash issue (U+2014).
+  %% Mikhak does not come with Regular form (maybe we should use VF?).
+  %% Combination of Light and Medium will be thinner than other fonts.
+  \resetfontfallback [dejavudefault]
+  \definefontfallback[dejavudefault][dejavusans] [basiclatin]         [check=yes,force=no]
+  \definefontfallback[dejavudefault][dejavusans] [latinsupplement]    [check=yes,force=no]
+  \definefontfallback[dejavudefault][dejavusans] [generalpunctuation] [check=yes,force=no]
+ \startexpanded
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+                     [features={flang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={flang,arabic,texlig,\typescripttwo fix},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [file:\typescriptprefix{f:\typescripttwo}-Regular.ttf]
+                     [features={flang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [file:\typescriptprefix{f:\typescripttwo}-Bold.ttf]
+                     [features={flang,arabic,texlig,\typescripttwo fix,slanted},fallbacks=dejavudefault]
+ \stopexpanded
+\stoptypescript
+
+%D AzarMehr has normal and bold, so create slanted manually.
+\starttypescript [serif,sans,mono,define] [azarmehr] [name]
+  \resetfontfallback [monofall]
+  \definefontfallback[monofall][dejavusansmono] [basiclatin]         [check=yes,force=no]
+  \definefontfallback[monofall][dejavusansmono] [latinsupplement]    [check=yes,force=no]
+  \definefontfallback[monofall][dejavusansmono] [generalpunctuation] [check=yes,force=no]
+ \startexpanded
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Reg]
+                     [file:\typescriptprefix{f:\typescripttwo}Regular.ttf]
+                     [features={dlang,arabic,\typescripttwo fix},
+		      fallbacks=monofall]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}Bd]
+                     [file:\typescriptprefix{f:\typescripttwo}Bold.ttf]
+                     [features={dlang,arabic,\typescripttwo fix},
+		      fallbacks=monofall]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}It]
+                     [file:\typescriptprefix{f:\typescripttwo}Regular.ttf]
+                     [features={dlang,arabic,\typescripttwo fix,slanted},
+		      fallbacks=monofall]
+  \definefontsynonym [\typescriptprefix{s:\typescripttwo}BdIt]
+                     [file:\typescriptprefix{f:\typescripttwo}Bold.ttf]
+                     [features={dlang,arabic,\typescripttwo fix,slanted},
+		      fallbacks=monofall]
+ \stopexpanded
+\stoptypescript
+
+%D After the fonts are mapped to symbolic names, we need to do one more
+%D level of mapping to get Serif/Sans/Mono aliases right.
+\starttypescript [serif,sans,mono] [estedad,mikhak,azarmehr] [name]
+  \definefontsynonym [\typescriptprefix{\typescriptone}]
+                     [\typescriptprefix{s:\typescripttwo}Reg]
+  \definefontsynonym [\typescriptprefix{\typescriptone}Bold]
+                     [\typescriptprefix{s:\typescripttwo}Bd]
+  \definefontsynonym [\typescriptprefix{\typescriptone}Italic]
+                     [\typescriptprefix{s:\typescripttwo}It]
+  \definefontsynonym [\typescriptprefix{\typescriptone}BoldItalic]
+                     [\typescriptprefix{s:\typescripttwo}BdIt]
+\stoptypescript
